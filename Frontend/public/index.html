@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login Page</title>
+    <link rel="stylesheet" href="css/login.css">
+</head>
+<body>
+    <div class="container">
+        <div class="image-section"></div> 
+        <div class="login-container">
+            <div class="logo-container">
+                <img src="img/TULOGO.jpg" alt="Logo" class="logo">
+                <h1>ระบบคำร้องออนไลน์</h1>
+            </div>
+            
+            
+            <form id="loginForm">
+                <label for="username">Username / รหัสนักศึกษา </label>
+                <input type="text" id="username" name="username" required>
+
+                <div class="password-container">
+                    <label for="password">Password / เลขประจำตัวประชาชน </label>
+                    <div class="password-wrapper">
+                        <input type="password" id="password" name="password" required>
+                        <span id="togglePassword" class="toggle-password">Show</span>
+                    </div>
+                </div>
+
+                <!-- Role Selection Dropdown -->
+                <label for="role">Select your role</label>
+                <select id="role" name="role" required>
+                    <option value="" disabled selected>Select your role</option>
+                    <option value="student">Student</option>
+                    <option value="employee">Lecturer</option>
+                </select>
+
+                <button type="button" id="loginBtn" onclick="submitLogin()" disabled>Login</button>
+            </form>
+            <p id="message"></p>
+        </div>
+    </div>
+
+    <script src="js/script.js"></script>
+</body>
+</html>
