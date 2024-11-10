@@ -1,0 +1,232 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+}
+
+.container {
+    display: grid;
+    grid-template-areas:
+        "header header"
+        "sidebar main"
+        "actions actions";
+    grid-template-rows: 80px 1fr 80px;
+    grid-template-columns: 1fr 3fr;
+    height: 100vh;
+}
+
+.header {
+    grid-area: header;
+    background-color: #f0f0f0;
+    display: flex;
+    justify-content: center; /* Center "คำร้อง" */
+    align-items: center;
+    padding: 0 20px;
+    border-bottom: 2px solid #ddd;
+    position: relative;
+}
+
+.back-button {
+    position: absolute;
+    top: 10px;
+    left: 20px;
+    font-size: 18px;
+    color: #333;
+}
+.title {
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.profile-section {
+    position: absolute;
+    right: 20px; /* Move profile section to the right side of the header */
+    display: flex;
+    align-items: center;
+}
+
+.teacher-name {
+    margin-right: 10px;
+    font-size: 18px;
+    color: #333;
+}
+
+.profile {
+    width: 40px;
+    height: 40px;
+    background-color: #ccc;
+    border-radius: 50%;
+}
+
+.main-content {
+    grid-area: main;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #f9f9f9;
+}
+
+.central-image {
+    width: 80%;
+    max-width: 600px;
+    height: auto;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+
+
+.sidebar {
+    grid-area: sidebar;
+    background-color: #f0f0f0;
+    padding: 20px;
+    font-size: 18px;
+    color: #333;
+    position: relative;
+}
+.back-button,
+.notification-button {
+    font-size: 18px;
+    color: #333;
+    background-color: #ffffff;
+    border: 1px solid #ccc; /* Adds a border around the button */
+    cursor: pointer;
+
+    padding: 10px 10px;
+
+    width: calc(45% - 10px); /* Make the buttons responsive inside the sidebar */
+
+    transition: background-color 0.3s, box-shadow 0.3s;
+}
+
+.notification-button {
+    position: absolute;
+    bottom: 20px;
+    left: 20px;
+}
+
+.back-button:hover,
+.notification-button:hover {
+    background-color: #e0e0e0;
+    box-shadow: 0 4px 4px rgba(0, 0, 0, 0.2); /* Shadow effect on hover */
+}
+
+
+.back-button {
+    position: absolute;
+    top: 10px;
+    left: 20px;
+}
+.sidebar p {
+    position: absolute;
+    bottom: 20px; /* Position "การแจ้งเตือน" near the bottom */
+    left: 20px;
+    margin: 0;
+}
+.actions {
+    position: absolute;
+    bottom: 20px;
+    right: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+.action-button {
+    padding: 10px;
+    border: none;
+    color: #fff;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 1em;
+    transition: background-color 0.3s;
+}
+
+.send-button {
+    background-color: #d8cfcf;
+    color: #333;
+}
+
+.info-button {
+    background-color: #e8d9d9;
+    color: #333;
+}
+
+.approve-button {
+    background-color: #d8e8d8;
+    color: #333;
+}
+
+.action-button:hover {
+    opacity: 0.8;
+}
+
+.overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    display: none;
+    justify-content: center;
+    align-items: center;
+}
+
+.overlay-content {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 5px;
+    width: 300px;
+    text-align: center;
+}
+
+.overlay-content textarea {
+    width: 100%;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    padding: 5px;
+    font-size: 14px;
+}
+
+.overlay-content button {
+    padding: 8px 20px;
+    font-size: 14px;
+    cursor: pointer;
+}
+
+.show {
+    display: flex;
+}  
+
+.menu-bar {
+    width: 200px;
+    height: 85vh; /* ให้เมนูเต็มความสูงของหน้าจอ */
+    background-color: #e0e0e0;
+    display: flex;
+    flex-direction: column;
+}
+
+.menu-item {
+    padding: 20px;
+    text-align: center;
+    border-bottom: 1px solid #b0b0b0;
+    background-color: #d0d0d0;
+    cursor: pointer;
+}
+
+.notification {
+    padding: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    margin-top: auto; /* ดันการแจ้งเตือนให้ติดอยู่ด้านล่าง */
+    background-color: #d0d0d0;
+    text-align: center;
+    border-radius: 8px;
+}
+
+.notification img {
+    width: 20px;
+    height: 20px;
+}

@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Full Page Layout</title>
+    <link rel="stylesheet" href="../css/Pro_Workpage.css">
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <div class="title">คำร้อง</div>
+            <div class="profile-section">
+                <div class="teacher-name">อาจารย์ กดสอบ</div>
+                <div class="profile"></div>
+            </div>
+        </div>
+        <div class="main-content">
+            <div class="content">
+                <img src="your-image.jpg" alt="Central Image" class="central-image">
+            </div>
+        </div>
+        <div class="sidebar">
+        <div class="menu-bar">
+            <div class=" back-button ">
+            <div class="menu-item ">ย้อนกลับ</div>
+        </div>
+
+            <div class="notification">
+                <img src="../img/bell.png" alt="แจ้งเตือน">
+                <button class="notification">การแจ้งเตือน</button>
+            </div>
+        </div>
+    </div>
+
+        <div class="actions">
+            <button class="action-button send-button">ส่งกลับคำร้อง</button>
+            <button class="action-button info-button" onclick="showOverlay()">ขอข้อมูลเพิ่มเติม</button>
+            <button class="action-button approve-button">อนุมัติคำร้อง</button>
+        </div>
+
+    <!-- กล่องข้อความแบบ Overlay -->
+    <div class="overlay" id="overlay">
+        <div class="overlay-content">
+            <p>ความคิดเห็นหรือข้อเสนอแนะ:</p>
+            <textarea rows="3"></textarea>
+            <button onclick="closeOverlay()">ส่ง</button>
+        </div>
+    </div>
+
+    <script src="../js/Pro_Workpage.js"></script>
+</body>
+</html>
