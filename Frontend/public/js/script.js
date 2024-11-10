@@ -128,3 +128,13 @@ function showRequest(timeframe) {
         requestList.innerHTML = `<p>ไม่มีคำร้องในช่วงเวลานี้</p>`;
     }
 }
+
+document.getElementById('togglePassword').addEventListener('click', function () {
+    const passwordField = document.getElementById('password');
+    const type = passwordField.getAttribute('type') === 'password' ? 'text' : 'password';
+    passwordField.setAttribute('type', type);
+
+    // เปลี่ยนข้อความและไอคอน
+    this.textContent = type === 'password' ? ' Show' : ' Hide';
+    this.classList.toggle('show-password');
+});
