@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>แบบฟอร์มคำร้องขอลาพักการศึกษา</title>
+    <!--<link rel="stylesheet" href="../css/form.css"> ติดไว้ก่อน -->
+    <!--<link rel="stylesheet" href="../css/styles.css"> ติดไว้ก่อน --> 
+    <link rel="stylesheet" href="../css/reLeave.css">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="user-info" onclick="toggleDropdown()">
+            <div class="user-details">
+                <span id="user-name">ชื่อผู้ใช้</span>
+                <span id="user-ID">6609650000</span>
+            </div>
+            <img src="img/user-image.png" alt="User Image" class="user-image">
+            
+            <!-- Dropdown content -->
+            <div id="dropdown-content" class="dropdown-content">
+                <a href="#" id="user-email">user@example.com</a>
+                <a href="#" onclick="logout()">Logout</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Sidebar -->
+    <div class="menu-sidebar">
+        <a href="#">ยื่นคำร้อง</a>
+        <a href="#">ติดตามผลคำร้อง</a>
+        <a href="#">ประวัติคำร้อง</a>
+    </div>
+
+    <!-- Main Form Content -->
+    <div class="infromation">
+        <h2 class="form-title">แบบฟอร์มคำร้องขอลาพักการศึกษาปริญญาตรี</h2>
+        <h2 class="h10">มหาวิทยาลัยธรรมศาสตร์</h2>
+        <hr>
+        <form action="#" method="post">
+            <div class="form-row">
+                <label for="date" class="date-label">วันที่</label>
+                <input type="date" id="date" name="date" required class="date-input">
+            </div>
+            <div class="form-row1">
+                <label for="dean-name" class="dean-lebel">เรียน ท่านคณบดี</label>
+                <input type="text" id="dean-name" name="dean-name" required class="dean-input">
+                <span> (ผ่านอาจารย์ที่ปรึกษา) </span>
+            </div>
+            <div class="form-row2">
+                <label for="self-name" class="self-name-label">ข้าพเจ้า</label>
+                <input type="text" id="self-name" name="self-name" required class="self-name-input">
+                
+                <label for="student-id" class="student-id-label">เลขทะเบียน</label>
+                <input type="text" id="student-id" name="student-id" required class="student-id-input" placeholder="6609650000" required>
+                <span id="regNumberError">รูปแบบเลขทะเบียนไม่ถูกต้อง</span><br><br>
+            </div>
+            <div class="form-row3">
+                <label class="education-status-label">เป็นนักศึกษาปริญญาตรี</label>
+                <div class="education-status">
+                    <input type="radio" id="regular" name="education-status" value="regular" required>
+                    <label for="regular" class="regular-label">ภาคปกติ</label>
+                    <input type="radio" id="graduate" name="education-status" value="graduate" required>
+                    <label for="graduate" class="graduate-label">ภาคบัณฑิต</label>
+                </div>
+                <label for="advisor-name" class="advisor-label">ชื่ออาจารย์ที่ปรึกษา</label>
+                <input type="text" id="advisor-name" name="advisor-name" required class="advisor-input">
+            </div>
+            <div class="form-row4">
+                <label for="reason">มีความประสงค์ขอลาพักการศึกษา เนื่องจาก</label>
+                <textarea id="reason" name="reason" rows="2" required class="reason-input"></textarea>
+            </div>
+            <div class="form-row5">
+                <label>ดังนั้น จึงขออนุญาตลาพักการศึกษาในภาค</label>
+                <input type="text" id="term" required class="term-input">
+                <label>รวม</label>
+                <input type="text" id="totalTerms" required class="totalTerms-input">
+                <label>ภาคการศึกษา</label>
+            </div>
+            <div class="form-row6">
+                โดย <input type="radio" name="register-option" class="custom-radio" id="option-1" required> ไม่ได้จดทะเบียนลักษณะวิชาในภาค 
+                <input type="text" class="semester-input" id="semester-input-1" required>
+            </div>            
+            <div class="form-row7">
+                <input type="radio" name="register-option" class="custom-radio" id="option-2" required> ได้จดทะเบียนเรียนลักษณะวิชาในภาค 
+                <input type="text" class="semester-input" id="semester-input-2" required> ดังนี้ (เขียนรหัสวิชา)
+            </div>
+            <div class="form-row8">
+                <input type="text" class="course-code-input" id="course-code-input" required>
+            </div>
+            <div class="form-row9">
+                ในระหว่างที่ลาพักนี้จะติดต่อข้าพเจ้าได้ที่ <input type="text" class="contact-input" required class="contact-input">
+            </div>
+            <div class="form-row10">
+                <span>โทรศัพท์</span>
+                <input type="text" id="phone" name="phone" class="phone-input" placeholder="0620000000" required>
+                <span id="phoneError">รูปแบบเบอร์โทรไม่ถูกต้อง</span><br><br>
+            </div>
+            <div class="form-row11">
+                <span>ขอแสดงความนับถือ</span>
+            </div>
+            <div class="form-row12">
+                <input type="text" class="signature-input" required class="signature-input">
+            </div>
+            <!-- ปุ่ม Submit และ Reset -->
+            <div class="form-row-submit">
+                 <button type="submit" class="submit-btn">Submit</button>
+                <button type="reset" class="reset-btn">ล้างฟอร์ม</button>
+            </div>
+        </form>
+    </div>
+
+    <script src="../js/reLeave.js"></script>
+</body>
+</html>

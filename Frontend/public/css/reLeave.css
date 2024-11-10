@@ -1,0 +1,860 @@
+body {
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    background-image: url(../img/BG.jpg);
+    background-size: 100%;
+    margin: 0; /* ลบ margin ของ body */
+}
+
+.login-container {
+    width: 300px;
+    margin: 100px auto;
+    padding: 30px;
+    background-color: #fff;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.login-container:hover {
+    transition: 300ms;
+    box-shadow: 0 0 50px rgba(255, 0, 179, 0.2);
+}
+
+h1 {
+    text-align: center;
+    font-weight: 780;
+    margin-bottom: 20px;
+}
+
+label {
+    display: block;
+    font-weight: 640;
+    margin: 10px 0px;
+}
+
+input, select {
+    width: 100%;
+    padding: 8px 0px;
+    margin:2px 0px 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+button {
+    width: 100%;
+    padding: 12px;
+    border-radius: 5px;
+    margin-top: 20px;
+    background-color: #007bff;
+    border: none;
+    color: #fff;
+    cursor: pointer;
+}
+
+button:hover {
+    transition: 300ms;
+    background-color: #0056b3;
+}
+
+#message {
+    margin-top: 20px;
+    font-weight: 600;
+    text-align: center;
+    color: #ff0000;
+}
+#Profile {
+    display: none;
+    position: fixed;
+    left: 0;
+    top: 0;
+    z-index: 1;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(46, 46, 46, 0.5);
+}
+
+/* ShowData */
+.infromation {
+    text-align: center;
+    width: 600px;
+    margin: 80px auto;
+    padding: 30px;
+    background-color: #fff;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+.infromation ul {
+    list-style: none;
+    text-align: center;
+    margin-left: 5%;
+    li {
+        text-align: left;
+        padding: 10px;
+        font-weight: 600;
+        color: #000000;
+    }
+}
+
+.close {
+    color: #838383;
+    font-size: 35px;
+    font-weight: bold;
+}
+
+.close:hover {
+    cursor: pointer;
+}
+
+#loginBtn {
+    background-color: #cccccc; 
+    color: #ffffff;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: not-allowed;
+    font-size: 16px;
+    transition: background-color 0.3s ease;
+}
+
+#loginBtn:enabled {
+    background-color: #28a745; 
+    cursor: pointer; 
+}
+
+#loginBtn:enabled:hover {
+    background-color: #218838;
+}
+
+#loginBtn:enabled:focus {
+    outline: none;
+    box-shadow: 0 0 5px 2px rgba(40, 167, 69, 0.5); /* แสดงขอบที่ชัดเจนเมื่อปุ่มถูก focus */
+}
+
+.password-container {
+    position: relative;
+    width: 100%;
+    max-width: 300px;
+    margin-bottom: 15px;
+}
+
+.password-wrapper {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.password-wrapper input {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 16px;
+    box-sizing: border-box;
+}
+
+.toggle-password {
+    position: absolute;
+    top: 12px;
+    right: 10px;
+    cursor: pointer;
+    color: #2a0ea7; 
+    font-size: 14px;
+    display: flex;
+    align-items: center;
+}
+
+.toggle-password:hover {
+    color: #005f5f;
+}
+
+/* ------------------------------------------------------------------------------ */
+body {
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    background-image: url(../img/BG.jpg);
+    background-size: 100%;
+    margin: 0; /* ลบ margin ของ body */
+}
+
+.login-container {
+    width: 300px;
+    margin: 100px auto;
+    padding: 30px;
+    background-color: #fff;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.login-container:hover {
+    transition: 300ms;
+    box-shadow: 0 0 50px rgba(255, 0, 179, 0.2);
+}
+
+h1 {
+    text-align: center;
+    font-weight: 780;
+    margin-bottom: 20px;
+}
+
+label {
+    display: block;
+    font-weight: 640;
+    margin: 10px 0px;
+}
+
+input, select {
+    width: 100%;
+    padding: 8px 0px;
+    margin:2px 0px 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+button {
+    width: 100%;
+    padding: 12px;
+    border-radius: 5px;
+    margin-top: 20px;
+    background-color: #007bff;
+    border: none;
+    color: #fff;
+    cursor: pointer;
+}
+
+button:hover {
+    transition: 300ms;
+    background-color: #0056b3;
+}
+
+#message {
+    margin-top: 20px;
+    font-weight: 600;
+    text-align: center;
+    color: #ff0000;
+}
+#Profile {
+    display: none;
+    position: fixed;
+    left: 0;
+    top: 0;
+    z-index: 1;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(46, 46, 46, 0.5);
+}
+
+/* ShowData */
+.infromation {
+    text-align: center;
+    width: 1000px;
+    margin: 80px auto;
+    padding: 30px;
+    background-color: #fff;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+.infromation ul {
+    list-style: none;
+    text-align: center;
+    margin-left: 5%;
+    li {
+        text-align: left;
+        padding: 10px;
+        font-weight: 600;
+        color: #000000;
+    }
+}
+
+.close {
+    color: #838383;
+    font-size: 35px;
+    font-weight: bold;
+}
+
+.close:hover {
+    cursor: pointer;
+}
+
+#loginBtn {
+    background-color: #cccccc; 
+    color: #ffffff;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: not-allowed;
+    font-size: 16px;
+    transition: background-color 0.3s ease;
+}
+
+#loginBtn:enabled {
+    background-color: #28a745; 
+    cursor: pointer; 
+}
+
+#loginBtn:enabled:hover {
+    background-color: #218838;
+}
+
+#loginBtn:enabled:focus {
+    outline: none;
+    box-shadow: 0 0 5px 2px rgba(40, 167, 69, 0.5); /* แสดงขอบที่ชัดเจนเมื่อปุ่มถูก focus */
+}
+
+.password-container {
+    position: relative;
+    width: 100%;
+    max-width: 300px;
+    margin-bottom: 15px;
+}
+
+.password-wrapper {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.password-wrapper input {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 16px;
+    box-sizing: border-box;
+}
+
+.toggle-password {
+    position: absolute;
+    top: 12px;
+    right: 10px;
+    cursor: pointer;
+    color: #2a0ea7; 
+    font-size: 14px;
+    display: flex;
+    align-items: center;
+}
+
+.toggle-password:hover {
+    color: #005f5f;
+}
+
+/* ------------------------------------------------------------------------------ */
+.navbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: #333;
+    padding: 15px 20px;
+    color: white;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 2;
+}
+
+.user-info {
+    position: relative;
+    display: flex;
+    align-items: center;
+    margin-left: auto;
+    margin-right: 40px;
+    cursor: pointer;
+}
+
+.user-image {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    margin-right: 10px;
+}
+
+.user-details {
+    display: flex;
+    flex-direction: column;
+}
+
+#user-name {
+    font-size: large;
+    text-align: right;
+}
+
+#user-ID {
+    font-size: small;
+    text-align: right;
+}
+
+/* Dropdown content styling */
+.dropdown-content {
+    display: none;
+    position: absolute;
+    top: 60px; /* Adjust to align below the navbar */
+    right: 0;
+    background-color: #fff;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2);
+    z-index: 3;
+    border-radius: 5px;
+}
+
+.dropdown-content a {
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+}
+
+.dropdown-content a:hover {
+    background-color: #f1f1f1;
+}
+
+.menu-sidebar {
+    height: 100%;
+    width: 250px;
+    position: fixed;
+    top: 0;
+    left: 0;
+    background-color: #333;
+    color: white;
+    padding-top: 20px;
+}
+
+/* ลิงก์ใน Sidebar */
+.menu-sidebar a {
+    padding: 10px 15px;
+    text-decoration: none;
+    font-size: 18px;
+    color: white;
+    display: block;
+}
+
+/* เปลี่ยนสีลิงก์เมื่อ Hover */
+.menu-sidebar a:hover {
+    background-color: #575757;
+}
+
+.user-info {
+    position: relative;
+    display: flex;
+    align-items: center;
+    margin-left: auto;
+    gap: 10px;
+    cursor: pointer;
+}
+
+.user-image {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    margin-right: 10px;
+}
+
+.user-details {
+    display: flex;
+    flex-direction: column;
+}
+
+#user-name {
+    font-size: large;
+    text-align: right;
+}
+
+#user-ID {
+    font-size: small;
+    text-align: right;
+}
+
+/* Dropdown content styling */
+.dropdown-content {
+    display: none;
+    position: absolute;
+    top: 60px; /* Adjust to align below the navbar */
+    right: 0;
+    background-color: #fff;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2);
+    z-index: 1;
+    border-radius: 5px;
+}
+
+.dropdown-content a {
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+}
+
+.dropdown-content a:hover {
+    background-color: #f1f1f1;
+}
+
+/* ------------------------------------------------------------------------------ */
+.menu-sidebar {
+    position: fixed;
+    top: 50px;
+    left: 0;
+    width: 200px;
+    height: calc(100% - 60px);
+    background-color: #444;
+    padding-top: 20px;
+    color: white;
+}
+
+.menu-sidebar a {
+    display: block;
+    padding: 10px 15px;
+    text-decoration: none;
+    color: white;
+}
+
+.menu-sidebar a:hover {
+    background-color: #575757;
+}
+
+/* -------------------------------------------------------- เพิ่มมาจากเดิม */
+/* General Styling */
+* {
+    box-sizing: border-box; /* คำนวณขนาดรวม padding และ border */
+}
+
+.form-title {
+    color: #333333;
+    font-size: 24px;
+    text-align: center;
+    margin-bottom: 10px;
+}
+
+.form-row {
+    display: flex; /* ใช้ flexbox เพื่อจัดการแถว */
+    justify-content: flex-end; /* จัดให้อยู่ขวาสุด */
+    align-items: center; /* จัดให้อยู่ตรงกลางในแนวตั้ง */
+}
+
+.h10 {
+    text-align: right; /* จัดข้อความให้ไปอยู่ขวา */
+    margin-right: 20px; /* ระยะห่างจากขอบขวา */
+    font-size: 16px; /* ขนาดฟอนต์เล็ก */
+
+}
+
+.date-label, .date-input {
+    display: inline-block; /* ให้ label และ input อยู่ในแถวเดียวกัน */
+    vertical-align: middle; /* จัดให้อยู่แนวเดียวกันในแนวตั้ง */
+}
+
+.date-label {
+    font-size: 16px;
+    margin-right: 10px; /* ปรับระยะห่างให้ไม่เกินไป */
+}
+
+.date-input {
+    width: 200px; /* ขยายช่องกรอกวันที่ */
+    font-size: 16px;
+    padding: 5px ;
+}
+
+.form-row1 {
+    display: flex;
+    justify-content: flex-start; /* จัดตำแหน่งไปทางซ้าย */
+    align-items: center; /* จัดให้องค์ประกอบอยู่ในแนวเดียวกัน */
+}
+
+.dean-input {
+    width: 353px; /* ความยาวของช่องกรอกชื่อคณบดี */
+    font-size: 16px;
+    padding: 5px;
+    margin-left: 10px; /* ขยับช่องกรอกข้อมูลจากข้อความ "เรียน ท่านคณบดี" */
+}
+
+.dean-label {
+    font-size: 16px;
+    margin-right: 10px; /* ปรับระยะห่างให้ไม่เกินไป */
+}
+
+.form-row1 span {
+    font-size: 16px; /* ขนาดของข้อความ "ผ่านอาจารย์ที่ปรึกษา" */
+    margin-left: 20px; /* ระยะห่างระหว่างช่องกรอกข้อมูลกับข้อความ */
+}
+
+label {
+    font-size: 16px;
+    font-weight: normal; /* ทำให้ข้อความใน label ไม่เป็นตัวหนา */
+}
+
+/* ปรับให้ข้อความ label ไม่เป็นตัวหนา */
+.date-label, .dean-label {
+    font-weight: normal; /* ทำให้ข้อความไม่เป็นตัวหนา */
+}
+
+.form-row2 {
+    display: flex;
+    justify-content: flex-start; /* จัดให้อยู่ทางซ้าย */
+    align-items: center;
+    gap: 20px; /* เว้นระยะห่างระหว่างข้าพเจ้าและเลขทะเบียน */
+}
+
+.self-name-label, .student-id-label {
+    font-size: 16px;
+    font-weight: normal; /* ปรับให้ข้อความไม่เป็นตัวหนา */
+}
+
+.self-name-input {
+    width: 300px;
+    padding: 5px;
+    font-size: 16px;
+    
+}
+
+.student-id-input {
+    width: 150px;
+    padding: 5px;
+    font-size: 16px;
+}
+
+.self-name-label {
+    font-size: 16px;
+    font-weight: normal; /* ทำให้ข้อความไม่เป็นตัวหนา */
+    margin-left: 100px; /* เพิ่มระยะห่างจากด้านซ้าย */
+}
+
+.form-row3 {
+    display: flex;
+    align-items: center;
+    font-size: 16px;
+}
+
+.education-status {
+    display: flex;
+    gap: 15px;
+}
+
+.education-status label {
+    margin-right: 5px;
+    font-size: 16px;
+}
+
+.education-status input[type="radio"] {
+    margin-left: 5px;
+    appearance: none; /* เอารูปแบบเดิมออก */
+    width: 18px; /* กำหนดขนาดของ radio button */
+    height: 18px; /* กำหนดขนาดของ radio button */
+    top: 10px; /* ย้ายลงมาจากตำแหน่งเดิม 10px */
+    position: relative;
+    cursor: pointer;
+}
+
+.education-status input[type="radio"]:checked {
+    background-color: #1dadc0; /* เปลี่ยนสีเมื่อ radio button ถูกติ้ก */
+    border-color: #1dadc0; /* เปลี่ยนสีของเส้นขอบเมื่อติ้ก */
+}
+
+.advisor-label {
+    font-size: 16px;
+    margin-left: 10px;
+}
+
+.advisor-input {
+    margin-left: 10px;
+    padding: 5px;
+    width: 409px;
+    font-size: 16px;
+}
+
+.form-row4 {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start; /* จัดให้เริ่มจากด้านซ้าย */
+    margin-top: auto;
+    text-align: left;
+}
+
+#reason {
+    width: 100%;
+    padding: 20px;
+    font-size: 16px;
+    resize: none;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    text-align: left; /* จัดข้อความภายในช่องให้อยู่ด้านซ้าย */
+}
+
+.form-row5 {
+    display: flex;
+    align-items: center;
+    margin-left: 80px; /* เว้นระยะจากด้านซ้าย */
+    gap: 10px; /* ระยะห่างระหว่างองค์ประกอบ */
+    margin-top: 15px;
+}
+
+#term, #totalTerms {
+    width: 22%;
+    padding: 5px;
+    font-size: 16px;
+}
+
+.form-row6 {
+    display: flex;
+    align-items: center;
+    margin-top: 10px;
+    gap: 10px; /* ระยะห่างระหว่างองค์ประกอบ */
+
+}
+
+.form-row7 {
+    display: flex;
+    align-items: center;
+    margin-top: 10px;
+    gap: 10px; /* ระยะห่างระหว่างองค์ประกอบ */
+    margin-left: 36.5px;
+}
+
+.semester-input {
+    margin-left: 10px;
+    padding: 5px;
+    width: 409px;
+    font-size: 14px;
+}
+
+.custom-radio {
+    appearance: none; /* เอารูปแบบดั้งเดิมออก */
+    width: 18px; /* กำหนดขนาด */
+    height: 18px; /* กำหนดขนาด */
+    margin-left: 5px;
+    position: relative;
+    cursor: pointer;
+}
+
+.custom-radio:checked {
+    background-color: #1dadc0; /* เปลี่ยนสีเมื่อ checkbox ถูกเลือก */
+    border-color: #1dadc0; /* เปลี่ยนสีเส้นขอบเมื่อติ้ก */
+}
+
+.form-row8 {
+    display: flex;
+    align-items: center;
+    margin-top: 10px;
+    margin-left: 72px;
+}
+
+.course-code-input {
+    width: 100%;  /* กำหนดความกว้างเต็ม */
+    padding: 5px;
+    border: 1px solid #ccc;  /* ขอบที่เบา */
+    border-radius: 4px;  /* มุมโค้ง */
+    font-size: 16px;
+}
+
+.form-row9 {
+    display: flex;
+    align-items: center;
+    margin-left: 80px;
+    gap : 10px
+}
+
+.contact-input {
+    width: 68.5%;  
+    padding: 5px;
+    font-size: 16px;
+}
+
+.form-row10 {
+    display: flex;
+    align-items: center;
+    gap : 10px
+}
+
+.phone-input {
+    width: 21%;  
+    padding: 5px;
+    font-size: 16px;
+}
+
+
+.form-row10 span {
+    font-size: 16px;
+    font-weight: 500;
+}
+
+.form-row11 {
+    display: flex;
+    justify-content: flex-end; /* จัดให้ข้อความอยู่ทางขวา */
+    margin-right: 200px;
+}
+
+.form-row11 span {
+    font-size: 16px;
+    font-weight: 500;
+}
+
+.form-row12 {
+    margin-left: 405px;
+    margin-top: 10px; /* เพิ่มช่องว่างระหว่างสองบรรทัด */
+}
+
+.signature-input {
+    width: 100%; /* ให้ช่องกรอกฟอร์มเต็มความกว้าง */
+    max-width: 300px; /* กำหนดความกว้างสูงสุด */
+    padding: 5px;
+    font-size: 16px;
+}
+
+/* สำหรับจัดการตำแหน่งของปุ่ม */
+.form-row-submit {
+    display: flex;
+    justify-content: flex-end; /* จัดให้ปุ่มอยู่ทางขวา */
+    gap: 10px; /* เว้นระยะห่างระหว่างปุ่ม */
+    margin-top: 20px; /* เพิ่มช่องว่างด้านบน */
+}
+
+/* สไตล์สำหรับปุ่ม Submit */
+.submit-btn {
+    background-color: #1dadc0;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+    border-radius: 4px;
+}
+
+/* สไตล์เมื่อ hover */
+.submit-btn:hover {
+    background-color: #1a9a8f;
+}
+
+/* สไตล์สำหรับปุ่ม Reset */
+.reset-btn {
+    background-color: #ff7b7b;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+    border-radius: 4px;
+}
+
+/* สไตล์เมื่อ hover */
+.reset-btn:hover {
+    background-color: #ff5c5c;
+}
+
+/* กำหนดสีแดงให้กับข้อความข้อผิดพลาด */
+#error {
+    color: red; /* ทำให้ข้อความผิดพลาดเป็นสีแดง */
+    display: none; /* ซ่อนข้อความผิดพลาดโดยเริ่มต้น */
+}
+
+/* กำหนดกรอบสีแดงให้กับช่องกรอกข้อมูลเมื่อเกิดข้อผิดพลาด */
+.error {
+    border: 1px solid red; /* กำหนดกรอบสีแดงให้กับช่องกรอกข้อมูล */
+}
+
+#phoneError, #regNumberError {
+    color: red;
+    font-size: 13px;
+    display: none; /* ซ่อนข้อความผิดพลาดโดยเริ่มต้น */
+}
+
+/* กำหนดกรอบสีแดงให้กับช่องกรอกข้อมูลเมื่อเกิดข้อผิดพลาด */
+.error {
+    border: 1px solid red;
+}
+
