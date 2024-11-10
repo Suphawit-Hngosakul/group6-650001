@@ -1,0 +1,196 @@
+/* เนื้อหาติดตามผลคำร้อง */
+.tracking-container {
+    margin-left: 220px;
+    padding: 40px;
+    margin-top: 80px;
+}
+
+.tracking-container h2 {
+    color: #333;
+    font-weight: bold;
+    font-size: 24px;
+    margin-bottom: 10px;
+    text-align: left;
+    position: relative;
+}
+
+.tracking-container h2::after {
+    content: "";
+    display: block;
+    width: 100%;
+    height: 2px;
+    background-color: #ccc;
+    margin-top: 10px;
+}
+
+.tracking-cards {
+    display: flex;
+    gap: 20px;
+    margin-top: 20px;
+}
+
+.tracking-card {
+    width: 150px;
+    height: 150px;
+    background-color: #e0e0e0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 16px;
+    color: #777;
+    border-radius: 4px;
+    text-decoration: none;
+    flex-direction: column;
+    padding: 10px;
+    box-sizing: border-box;
+    text-align: center;
+}
+
+.tracking-card .document-icon {
+    width: 100%;
+    height: 70px;
+    background-color: #d0d0d0;
+    border-radius: 4px;
+}
+
+.tracking-card span {
+    margin-top: 10px;
+    color: #333;
+    font-size: 14px;
+}
+
+/* เนื้อหาติดตามสถานะคำร้อง */
+.tracking-timeline {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+    padding-left: 40px;
+    margin-top: 20px;
+}
+
+.tracking-step {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    position: relative;
+}
+
+.tracking-step .circle {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    background-color: #04ff00;
+}
+
+.tracking-step .line {
+    width: 2px;
+    height: 60px;
+    background-color: #cccccc;
+    position: absolute;
+    left: 14px;
+    top: 30px;
+    z-index: -1;
+}
+
+.tracking-step:last-child .line {
+    display: none;
+}
+
+.tracking-step.grey .circle {
+    background-color: #cccccc;
+}
+
+.status-text {
+    font-size: 18px;
+    color: #048d04;
+    font-weight: bold;
+}
+
+.status-text.grey {
+    color: #888888;
+}
+
+/* --------------------------------------------------------------------------------------- */
+.sidebar {
+    width: 200px; /* กำหนดความกว้างของแถบเมนู */
+    background-color: #333; /* เปลี่ยนพื้นหลังของแถบเมนูเป็นสีดำมืด */
+    display: flex;
+    flex-direction: column; /* ให้เมนูอยู่ในลำดับแนวตั้ง */
+    padding-top: 20px;
+    box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1); /* เพิ่มเงาให้เมนู */
+}
+
+/* เปลี่ยนสีไอคอนของลิงค์ "หน้าหลัก" ให้เป็นสีขาว */
+.sidebar a img {
+    filter: brightness(0) invert(1); /* ทำให้ไอคอนเป็นสีขาว */
+    margin-right: 10px;
+}
+
+.sidebar a {
+    display: flex;
+    align-items: center;
+    padding: 15px 20px;
+    text-decoration: none;
+    color: white; /* เปลี่ยนสีตัวอักษรเป็นสีขาว */
+    font-size: 16px;
+    border-left: 4px solid transparent; /* กำหนดเส้นขอบซ้ายของลิงค์ */
+    transition: 0.3s;
+}
+
+.sidebar a:hover {
+    background-color: #555; /* เปลี่ยนพื้นหลังเมื่อ hover ให้ดูชัดขึ้น */
+    border-left: 4px solid #f1f1f1; /* เปลี่ยนสีเส้นขอบซ้ายเมื่อ hover */
+}
+
+.sidebar a.active {
+    background-color: #444; /* พื้นหลังของลิงค์ที่เลือก */
+    border-left: 4px solid #f1f1f1; /* เปลี่ยนเส้นขอบให้เห็นได้ชัดเมื่อเลือก */
+    color: #fff; /* เปลี่ยนสีตัวอักษรเป็นขาว */
+    cursor: default;
+}
+
+.content {
+    flex: 1; /* ให้เนื้อหายืดขนาดเต็มที่เหลือ */
+    padding: 20px;
+}
+
+/* ส่วนของ header */
+.header {
+    background-color: #333; /* เปลี่ยนพื้นหลังแถบชื่อผู้ใช้เป็นสีดำมืด */
+    padding: 20px;
+    text-align: right;
+    font-size: 16px;
+    color: white; /* เปลี่ยนสีตัวอักษรเป็นขาว */
+}
+
+/* สไตล์สำหรับแต่ละรายการประวัติคำร้อง */
+.history-entry {
+    background-color: #dedede;
+    height: 60px; /* ความสูงของแต่ละรายการ */
+    margin: 10px 0;
+    border-radius: 5px;
+    display: flex;
+    align-items: center;
+    padding-left: 15px;
+    font-size: 16px;
+    color: #333;
+    cursor: pointer;  /* เพิ่ม cursor pointer ให้คลิกได้ */
+}
+
+.history-entry:hover {
+    background-color: #d3d3d3; /* เปลี่ยนสีเมื่อ hover */
+}
+
+/* การจัดสไตล์ให้กับลิสต์คำร้องที่จะแสดงในแต่ละช่วงเวลา */
+#request-list {
+    margin-top: 20px;
+}
+
+.request-item {
+    background-color: #e8e8e8;
+    padding: 10px;
+    border-radius: 5px;
+    margin: 5px 0;
+    font-size: 16px;
+    color: #333;
+}

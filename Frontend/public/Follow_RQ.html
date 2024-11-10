@@ -7,7 +7,6 @@
     <link href="https://fonts.googleapis.com/css2?family=Prompt:wght@400;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="css/styles.css">
     <link rel="stylesheet" href="css/requesttracking.css">
-    <link rel="stylesheet" href="css/notify.css">
 </head>
 <body>
     <nav class="navbar">
@@ -30,42 +29,40 @@
         <a href="home.html">ยื่นคำร้อง</a>
         <a href="Follow_request.html">ติดตามผลคำร้อง</a>
         <a href="History_request.html">ประวัติคำร้อง</a>
-        <!-- ปุ่มการแจ้งเตือน -->
-        <button class="notification-btn" onclick="toggleNotification()">
-            <img src="https://img.icons8.com/ios-filled/50/000000/appointment-reminders.png" alt="alert-icon"/>
-            การแจ้งเตือน
-        </button>
+        <a href="Follow_request.html">ย้อนกลับ</a>
     </div>
 
     <main class="follow_request">
         <h1 class="h-follow">ติดตามผลคำร้อง</h1>
         <hr>
-        <div class="tracking-cards">
-            <!-- การ์ดคำร้อง -->
-            <a href="Follow_RQ.html" class="tracking-card">
-                <div class="document-icon"></div>
-                <span>คำร้องการจดทะเบียนเพิ่ม-ถอน</span>
-            </a>
-            <a href="Follow_RQ.html" class="tracking-card">
-                <div class="document-icon"></div>
-                <span>คำร้องขอลาพักการศึกษา</span>
-            </a>
-            <a href="Follow_RQ.html" class="tracking-card">
-                <div class="document-icon"></div>
-                <span>คำร้องกรณีขาดสอบ</span>
-            </a>
+        <div class="tracking-timeline">
+            <div class="tracking-step">
+                <div class="circle"></div>
+                <span class="status-text">ส่งคำร้องสำเร็จ</span>
+                <div class="line"></div>
+            </div>
+            <div class="tracking-step">
+                <div class="circle"></div>
+                <span class="status-text">รอดำเนินการ</span>
+                <div class="line"></div>
+            </div>
+            <div class="tracking-step grey">
+                <div class="circle"></div>
+                <span class="status-text grey">กำลังดำเนินการอนุมัติ</span>
+                <div class="line"></div>
+            </div>
+            <div class="tracking-step grey">
+                <div class="circle"></div>
+                <span class="status-text grey">**คำร้องเกิดข้อผิดพลาด</span>
+                <div class="line"></div>
+            </div>
+            <div class="tracking-step grey">
+                <div class="circle"></div>
+                <span class="status-text grey">ได้รับการอนุมัติ</span>
+            </div>
         </div>
     </main>
-
-    <!-- ป๊อปอัพแจ้งเตือน -->
-    <div id="notification-popup" class="popup">
-        <div class="popup-content">
-            <span class="close-btn" onclick="toggleNotification()">&times;</span>
-            <h3>ส่งคำร้องสำเร็จ</h3>
-        </div>
-    </div>
     
-    <script src="js/notify.js"></script>
     <script src="js/script.js"></script>
 </body>
 
