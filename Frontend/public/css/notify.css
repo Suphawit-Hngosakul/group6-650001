@@ -1,0 +1,80 @@
+
+/* ปุ่มแจ้งเตือนใน sidebar */
+.notification-btn {
+    position: absolute; /* ใช้ absolute positioning */
+    bottom: 20px; /* ตั้งให้ปุ่มอยู่ห่างจากด้านล่าง 20px */
+    left: 0;
+    right: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 15px;
+    background-color: #af0f0f;
+    color: white;
+    border: none;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+
+.notification-btn img {
+    width: 22px; /* ขนาดไอคอนใหม่ */
+    height: 22px; /* ขนาดไอคอนใหม่ */
+    margin-right: 8px; /* ระยะห่างจากข้อความ */
+    filter: brightness(0) invert(1); /* ทำให้ไอคอนเป็นสีขาว */
+}
+
+.notification-btn span {
+    font-size: 16px; /* ปรับขนาดข้อความให้เหมาะสม */
+    color: #333;
+}
+
+/* ปุ่มเมื่อ hover */
+.notification-btn:hover {
+    background-color: #880d0d;
+}
+
+/* การตั้งค่า popup */
+.popup {
+    display: none; /* เริ่มต้นป๊อปอัพซ่อนอยู่ */
+    position: fixed; /* ให้ป๊อปอัพอยู่กับที่ */
+    top: 50%; /* จัดให้อยู่กลางหน้าจอ */
+    left: 50%; /* จัดให้อยู่กลางหน้าจอ */
+    transform: translate(-50%, -50%); /* ให้ป๊อปอัพอยู่ตรงกลาง */
+    background-color: white; /* พื้นหลังของป๊อปอัพ */
+    padding: 120px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    z-index: 1001; /* ทำให้ป๊อปอัพอยู่เหนือส่วนอื่น */
+}
+
+.popup .popup-content {
+    text-align: center;
+}
+
+.popup .close-btn {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    font-size: 20px;
+    cursor: pointer;
+}
+
+.popup h3 {
+    margin: 0;
+    font-size: 20px;
+}
+
+.close-btn {
+    font-size: 30px;
+    cursor: pointer;
+    color: #aaa;
+    position: absolute;
+    top: 10px;
+    right: 10px;
+}
+
+.close-btn:hover {
+    color: black;
+}
