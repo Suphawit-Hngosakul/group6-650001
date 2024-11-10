@@ -1,0 +1,562 @@
+label {
+    display: block;
+    font-weight: 640;
+    margin: 10px 0px;
+}
+
+input,
+select {
+    width: 100%;
+    padding: 8px 0px;
+    margin: 2px 0px 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+button {
+    width: 100%;
+    padding: 12px;
+    border-radius: 5px;
+    margin-top: 20px;
+    background-color: #007bff;
+    border: none;
+    color: #fff;
+    cursor: pointer;
+}
+
+button:hover {
+    transition: 300ms;
+    background-color: #0056b3;
+}
+
+/* ShowData */
+.infromation {
+    text-align: center;
+    width: 1000px;
+    margin: 80px auto;
+    padding: 30px;
+    background-color: #fff;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+.close {
+    color: #838383;
+    font-size: 35px;
+    font-weight: bold;
+}
+
+.close:hover {
+    cursor: pointer;
+}
+
+
+/* -------------------------------------------------------- เพิ่มมาจากเดิม */
+/* General Styling */
+* {
+    box-sizing: border-box;
+    /* คำนวณขนาดรวม padding และ border */
+}
+
+.form-title {
+    color: #333333;
+    font-size: 24px;
+    text-align: center;
+    margin-bottom: 10px;
+}
+
+.form-row {
+    display: flex;
+    /* ใช้ flexbox เพื่อจัดการแถว */
+    justify-content: flex-end;
+    /* จัดให้อยู่ขวาสุด */
+    align-items: center;
+    /* จัดให้อยู่ตรงกลางในแนวตั้ง */
+}
+
+.h10 {
+    text-align: right;
+    /* จัดข้อความให้ไปอยู่ขวา */
+    margin-right: 20px;
+    /* ระยะห่างจากขอบขวา */
+    font-size: 16px;
+    /* ขนาดฟอนต์เล็ก */
+
+}
+
+.date-label,
+.date-input {
+    display: inline-block;
+    /* ให้ label และ input อยู่ในแถวเดียวกัน */
+    vertical-align: middle;
+    /* จัดให้อยู่แนวเดียวกันในแนวตั้ง */
+}
+
+.date-label {
+    font-size: 16px;
+    margin-right: 10px;
+    /* ปรับระยะห่างให้ไม่เกินไป */
+}
+
+.date-input {
+    width: 200px;
+    /* ขยายช่องกรอกวันที่ */
+    font-size: 16px;
+    padding: 5px;
+}
+
+.form-row1 {
+    display: flex;
+    justify-content: center;
+    /* จัดตำแหน่งไปทางซ้าย */
+    align-items: center;
+    /* จัดให้องค์ประกอบอยู่ในแนวเดียวกัน */
+}
+
+.dean-input {
+    width: 353px;
+    /* ความยาวของช่องกรอกชื่อคณบดี */
+    font-size: 16px;
+    padding: 5px;
+    margin-left: 10px;
+    /* ขยับช่องกรอกข้อมูลจากข้อความ "เรียน ท่านคณบดี" */
+}
+
+.dean-label {
+    font-size: 16px;
+    margin-right: 10px;
+    /* ปรับระยะห่างให้ไม่เกินไป */
+}
+
+.form-row1 span {
+    font-size: 16px;
+    /* ขนาดของข้อความ "ผ่านอาจารย์ที่ปรึกษา" */
+    margin-left: 20px;
+    /* ระยะห่างระหว่างช่องกรอกข้อมูลกับข้อความ */
+}
+
+label {
+    font-size: 16px;
+    font-weight: normal;
+    /* ทำให้ข้อความใน label ไม่เป็นตัวหนา */
+}
+
+/* ปรับให้ข้อความ label ไม่เป็นตัวหนา */
+.date-label,
+.dean-label {
+    font-weight: normal;
+    /* ทำให้ข้อความไม่เป็นตัวหนา */
+}
+
+.form-row2 {
+    display: flex;
+    justify-content: flex-start;
+    /* จัดให้อยู่ทางซ้าย */
+    align-items: center;
+    gap: 20px;
+    /* เว้นระยะห่างระหว่างข้าพเจ้าและเลขทะเบียน */
+}
+
+.self-name-label,
+.student-id-label {
+    font-size: 16px;
+    font-weight: normal;
+    /* ปรับให้ข้อความไม่เป็นตัวหนา */
+}
+
+.self-name-input {
+    width: 300px;
+    padding: 5px;
+    font-size: 16px;
+
+}
+
+.self-year-label {
+    font-size: 16px;
+    font-weight: normal;
+    margin-right: 10px;
+    /* ระยะห่างทางขวาของ label */
+    margin-left: 40px;
+}
+
+.self-year-input {
+    width: 100px;
+    /* กำหนดความกว้างของกล่องข้อความ */
+    padding: 8px;
+    font-size: 14px;
+    margin-left: 10px;
+    /* ระยะห่างทางซ้ายของ input */
+}
+
+.student-id-input {
+    width: 351px;
+    padding: 5px;
+    font-size: 16px;
+}
+
+.self-name-label {
+    font-size: 16px;
+    font-weight: normal;
+    /* ทำให้ข้อความไม่เป็นตัวหนา */
+    text-align: left;
+    /* เพิ่มระยะห่างจากด้านซ้าย */
+}
+
+.faculty-label {
+    font-size: 16px;
+    font-weight: normal;
+    margin-right: 10px;
+    /* ระยะห่างทางขวาของ label */
+}
+
+.faculty-input {
+    width: 300px;
+    /* กำหนดความกว้างของกล่องข้อความ */
+    padding: 8px;
+    font-size: 14px;
+    margin-left: 10px;
+    /* ระยะห่างทางซ้ายของ input */
+}
+
+.form-row3 {
+    display: flex;
+    align-items: center;
+    font-size: 16px;
+}
+
+.education-status {
+    display: flex;
+    gap: 15px;
+}
+
+.education-status label {
+    margin-right: 5px;
+    font-size: 16px;
+}
+
+.education-status input[type="radio"] {
+    margin-left: 5px;
+    appearance: none;
+    /* เอารูปแบบเดิมออก */
+    width: 18px;
+    /* กำหนดขนาดของ radio button */
+    height: 18px;
+    /* กำหนดขนาดของ radio button */
+    top: 10px;
+    /* ย้ายลงมาจากตำแหน่งเดิม 10px */
+    position: relative;
+    cursor: pointer;
+}
+
+.education-status input[type="radio"]:checked {
+    background-color: #1dadc0;
+    /* เปลี่ยนสีเมื่อ radio button ถูกติ้ก */
+    border-color: #1dadc0;
+    /* เปลี่ยนสีของเส้นขอบเมื่อติ้ก */
+}
+
+.advisor-label {
+    font-size: 16px;
+    margin-left: 10px;
+}
+
+.advisor-input {
+    margin-left: 10px;
+    padding: 5px;
+    width: 409px;
+    font-size: 16px;
+}
+
+/* กรอบสำหรับ "มีความประสงค์จะ" */
+.request-section {
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    padding: 15px;
+    margin: 20px auto;
+    background-color: #f9f9f9;
+    width: 100%;
+    max-width: 600px;
+    box-sizing: border-box;
+}
+
+/* ตำแหน่งข้อความ "มีความประสงค์จะ" */
+.request-section-title {
+    text-align: center;
+    font-size: 18px;
+    font-weight: bold;
+    margin-bottom: 15px;
+}
+
+/* จัด checkbox และข้อความให้อยู่ในแนวเดียวกันแบบคอลัมน์เดียว */
+.request-options {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    align-items: flex-start;
+}
+
+.request-options label {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 16px;
+    white-space: nowrap;
+    /* ป้องกันการตัดบรรทัด */
+}
+
+/* ช่องกรอก input ขนาดเล็กสำหรับ "จำนวน" และ "หน่วยกิต" */
+.request-options input[type="text"] {
+    width: 50px;
+    padding: 5px;
+    font-size: 14px;
+}
+
+#subject {
+    width: 100%;
+    padding: 20px;
+    font-size: 16px;
+    resize: none;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    text-align: left;
+}
+
+#reason {
+    width: 100%;
+    padding: 20px;
+    font-size: 16px;
+    resize: none;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    text-align: left;
+    /* จัดข้อความภายในช่องให้อยู่ด้านซ้าย */
+}
+
+.form-row5 {
+    display: flex;
+    align-items: center;
+    margin-left: 80px;
+    /* เว้นระยะจากด้านซ้าย */
+    gap: 10px;
+    /* ระยะห่างระหว่างองค์ประกอบ */
+    margin-top: 15px;
+}
+
+#term,
+#totalTerms {
+    width: 22%;
+    padding: 5px;
+    font-size: 16px;
+}
+
+.form-row6 {
+    display: flex;
+    align-items: center;
+    margin-top: 10px;
+    gap: 10px;
+    /* ระยะห่างระหว่างองค์ประกอบ */
+
+}
+
+.form-row7 {
+    display: flex;
+    align-items: center;
+    margin-top: 10px;
+    gap: 10px;
+    /* ระยะห่างระหว่างองค์ประกอบ */
+    margin-left: 36.5px;
+}
+
+.semester-input {
+    margin-left: 10px;
+    padding: 5px;
+    width: 409px;
+    font-size: 14px;
+}
+
+.custom-radio {
+    appearance: none;
+    /* เอารูปแบบดั้งเดิมออก */
+    width: 18px;
+    /* กำหนดขนาด */
+    height: 18px;
+    /* กำหนดขนาด */
+    margin-left: 5px;
+    position: relative;
+    cursor: pointer;
+}
+
+.custom-radio:checked {
+    background-color: #1dadc0;
+    /* เปลี่ยนสีเมื่อ checkbox ถูกเลือก */
+    border-color: #1dadc0;
+    /* เปลี่ยนสีเส้นขอบเมื่อติ้ก */
+}
+
+.form-row8 {
+    display: flex;
+    align-items: center;
+    margin-top: 10px;
+    margin-left: 72px;
+}
+
+.course-code-input {
+    width: 100%;
+    /* กำหนดความกว้างเต็ม */
+    padding: 5px;
+    border: 1px solid #ccc;
+    /* ขอบที่เบา */
+    border-radius: 4px;
+    /* มุมโค้ง */
+    font-size: 16px;
+}
+
+.form-row9 {
+    display: flex;
+    align-items: left;
+    gap: 10px
+}
+
+/* สำหรับ label ที่อยู่ที่ติดต่อ */
+.contact-address-label {
+    font-size: 16px;
+    font-weight: normal;
+    margin-bottom: 5px;
+    display: block;
+    text-align: left;
+    margin-top: 10px;
+}
+
+.contact-input {
+    width: 90%;
+    padding: 20px;
+    font-size: 16px;
+    resize: none;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    text-align: left;
+}
+
+.form-row10 {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-top: 5px;
+}
+
+.phone-input {
+    width: 20%;
+    padding: 5px;
+    font-size: 16px;
+}
+
+.email-input {
+    width: 20%;
+    padding: 5px;
+    font-size: 16px;
+}
+
+.form-row10 span {
+    font-size: 16px;
+    font-weight: 500;
+
+}
+
+.form-row11 {
+    display: flex;
+    justify-content: flex-end;
+    /* จัดให้ข้อความอยู่ทางขวา */
+    margin-top: 10px;
+    margin-right: 200px;
+}
+
+.form-row11 span {
+    font-size: 16px;
+    font-weight: 500;
+}
+
+.form-row12 {
+    margin-left: 405px;
+    margin-top: 10px;
+    /* เพิ่มช่องว่างระหว่างสองบรรทัด */
+}
+
+.signature-input {
+    width: 100%;
+    /* ให้ช่องกรอกฟอร์มเต็มความกว้าง */
+    max-width: 300px;
+    /* กำหนดความกว้างสูงสุด */
+    padding: 5px;
+    font-size: 16px;
+}
+
+/* สำหรับจัดการตำแหน่งของปุ่ม */
+.form-row-submit {
+    display: flex;
+    justify-content: flex-end;
+    /* จัดให้ปุ่มอยู่ทางขวา */
+    gap: 10px;
+    /* เว้นระยะห่างระหว่างปุ่ม */
+    margin-top: 20px;
+    /* เพิ่มช่องว่างด้านบน */
+}
+
+/* สไตล์สำหรับปุ่ม Submit */
+.submit-btn {
+    background-color: #1dadc0;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+    border-radius: 4px;
+}
+
+/* สไตล์เมื่อ hover */
+.submit-btn:hover {
+    background-color: #1a9a8f;
+}
+
+/* สไตล์สำหรับปุ่ม Reset */
+.reset-btn {
+    background-color: #ff7b7b;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+    border-radius: 4px;
+}
+
+/* สไตล์เมื่อ hover */
+.reset-btn:hover {
+    background-color: #ff5c5c;
+}
+
+#faculty-error,
+#year-error,
+#l {
+    margin-left: 5px;
+    /* Adjust the value as needed */
+}
+
+/* กำหนดสีแดงให้กับข้อความข้อผิดพลาด */
+#error {
+    color: red; /* ทำให้ข้อความผิดพลาดเป็นสีแดง */
+    display: none; /* ซ่อนข้อความผิดพลาดโดยเริ่มต้น */
+}
+
+/* กำหนดกรอบสีแดงให้กับช่องกรอกข้อมูลเมื่อเกิดข้อผิดพลาด */
+.error {
+    border: 1px solid red; /* กำหนดกรอบสีแดงให้กับช่องกรอกข้อมูล */
+}
+
+#phoneError, #regNumberError {
+    color: red;
+    font-size: 13px;
+    display: none; /* ซ่อนข้อความผิดพลาดโดยเริ่มต้น */
+}
+
+/* กำหนดกรอบสีแดงให้กับช่องกรอกข้อมูลเมื่อเกิดข้อผิดพลาด */
+.error {
+    border: 1px solid red;
+}

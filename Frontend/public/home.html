@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ระบบยื่นคำร้อง</title>
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="user-info" onclick="toggleDropdown()">
+            <div class="user-details">
+                <span id="user-name">ชื่อผู้ใช้</span>
+                <span id="user-ID">0000000000</span>
+            </div>
+            <img src="img/user-image.png" alt="User Image" class="user-image">
+            
+            <!-- Dropdown content -->
+            <div id="dropdown-content" class="dropdown-content">
+                <a href="#" id="user-email">user@example.com</a>
+                <a href="#" onclick="logout()">Logout</a>
+            </div>
+        </div>
+    </nav>
+    <!-- Sidebar -->
+    <div class="menu-sidebar">
+        <a href="home.html">ยื่นคำร้อง</a>
+        <a href="Follow_request.html">ติดตามผลคำร้อง</a>
+        <a href="History_request.html">ประวัติคำร้อง</a>
+    </div>
+    
+    <main class="home">
+        <h1 class="h-home">ประเภทคำร้อง</h1>
+        <hr>
+        <div class="menu-petition">
+            <a href="html/RequestW.html">แบบฟอร์มคำร้องการจดทะเบียนเพิ่ม-ถอน</a>
+            <a href="html/Requestacademicleave.html">แบบฟอร์มคำร้องขอลาพักการศึกษา</a>
+            <a href="html/Requestabsentee_examination.html">แบบฟอร์มคำร้องกรณีขาดสอบ</a>
+        </div>
+    </main>
+    
+    <script src="js/script.js"></script>
+</body>
+
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        const user = JSON.parse(localStorage.getItem('user'));
+
+        if (user) {
+            document.getElementById('user-name').innerText = user.username;
+            document.getElementById('user-ID').innerText = user.studentID;
+            document.getElementById('user-email').innerText = user.email;
+        } else {
+            window.location.href = 'index.html';
+        }
+    });
+</script>
+
+</html>
