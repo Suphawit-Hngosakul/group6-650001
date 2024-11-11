@@ -1,0 +1,22 @@
+/* ปรับให้ Remember me อยู่ในบรรทัดเดียว */
+.remember-me {
+    display: inline-flex;  /* ใช้ inline-flex เพื่อให้ checkbox และ label อยู่ในบรรทัดเดียวกัน */
+    align-items: center;  /* ทำให้ checkbox และ label อยู่ตรงกลางแนวนอน */
+    margin-top: 10px;  /* ระยะห่างระหว่างปุ่ม Login และ Remember me */
+    white-space: nowrap;  /* ป้องกันไม่ให้ข้อความแยกบรรทัด */
+}
+
+.remember-me input {
+    margin-right: 5px;  /* เพิ่มระยะห่างระหว่าง checkbox กับ label */
+}
+
+/* ปรับการแสดงผลของ Remember me */
+.remember-me label {
+    display: inline;  /* กำหนดให้ label อยู่ในบรรทัดเดียวกันกับ input */
+    font-size: 14px;  /* ปรับขนาดตัวอักษร */
+    font-weight: normal;  /* ลดความหนาของตัวอักษร */
+    color: #333;  /* ปรับสีตัวอักษรให้อ่านง่าย */
+}
+
+
+
