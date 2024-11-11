@@ -54,7 +54,6 @@ function submitLogin() {
 //Chack
 function closedelete() {
     document.getElementById('message').style.color = 'ff0000';
-    document.getElementById('Profile').style.display = 'none';
     document.getElementById("loginForm").reset();
     location.reload();
     document.getElementById('message').innerText = '';
@@ -65,12 +64,24 @@ function checkInputs() {
     const password = document.getElementById('password').value.trim();
     const role = document.getElementById('role').value.trim();
     const loginBtn = document.getElementById('loginBtn');
+    const message = document.getElementById('message');
 
-    if (username !== '' && password !== '' && role !== '') {
-        loginBtn.disabled = false; // Enable the button if all fields are filled
+    // เคลียร์ข้อความข้อผิดพลาด
+    message.innerText = '';
+    message.style.color = 'red';
+
+    if (username === '') {
+        message.innerText = 'Username cannot be empty.';
+    } else if (password === '') {
+        message.innerText = 'Password cannot be empty.';
+    } else if (role === '') {
+        message.innerText = 'Please select your role.';
     } else {
-        loginBtn.disabled = true; // Disable the button if any field is empty
+        message.innerText = ''; // เคลียร์ข้อความข้อผิดพลาดหากกรอกครบทุกฟิลด์
     }
+
+    // เปิด/ปิดปุ่ม login ตามความครบถ้วนของข้อมูล
+    loginBtn.disabled = username === '' || password === '' || role === '';
 }
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -105,73 +116,6 @@ function logout() {
 
     window.location.href = 'index.html';
 }
-
-// =======================================================================================
-// function showRequest(timeframe) {
-//     const requestList = document.getElementById('request-list');
-    
-//     const formW = JSON.parse(localStorage.getItem('formW')) || [];
-//     const formADC = JSON.parse(localStorage.getItem('formADC')) || [];
-//     const allRequests = [...formW, ...formADC];
-
-//     function filterRequestsByTimeframe(requests, timeframe) {
-//         const now = new Date();
-//         let filteredRequests = [];
-
-//         requests.forEach(request => {
-//             const requestDate = new Date(request.date);
-//             const diffTime = now - requestDate;
-
-//             switch (timeframe) {
-//                 case 'week':
-//                     if (diffTime <= 7 * 24 * 60 * 60 * 1000) {
-//                         filteredRequests.push(request);
-//                     }
-//                     break;
-//                 case 'month':
-//                     if (diffTime > 7 * 24 * 60 * 60 * 1000 && diffTime <= 30 * 24 * 60 * 60 * 1000) {
-//                         filteredRequests.push(request);
-//                     }
-//                     break;
-//                 case 'year':
-//                     if (diffTime > 30 * 24 * 60 * 60 * 1000 && diffTime <= 365 * 24 * 60 * 60 * 1000) {
-//                         filteredRequests.push(request);
-//                     }
-//                     break;
-//             }
-//         });
-
-//         return filteredRequests;
-//     }
-
-//     function sortRequestsByDate(requests) {
-//         return requests.sort((a, b) => new Date(b.date) - new Date(a.date));
-//     }
-
-//     const filteredRequests = filterRequestsByTimeframe(allRequests, timeframe);
-//     const sortedRequests = sortRequestsByDate(filteredRequests);
-
-//     if (sortedRequests.length > 0) {
-//         requestList.innerHTML = `<h3>คำร้องที่ยื่น ${timeframe === 'week' ? 'สัปดาห์ก่อน' : (timeframe === 'month' ? 'เดือนก่อน' : 'ปีก่อน')}</h3>`;
-//         const listHTML = sortedRequests.map(request => `
-//             <div class="request-item">
-//                 <div class="box"></div>
-//                 <div class="content">
-//                     <h3>${request.formType}</h3>
-//                     <h4>${request.date}</h4>
-//                 </div>
-//             </div>
-//         `).join('');
-//         requestList.innerHTML += listHTML;
-//     } else {
-//         requestList.innerHTML = `<p>ไม่มีคำร้องในช่วงเวลานี้</p>`;
-//     }
-// }
-
-// // ตัวอย่างการใช้งาน
-// document.getElementById('week-btn').addEventListener('click', () => showRequest('week'));
-// document.getElementById('month-btn').addEventListener('click', () => showRequest('month'));
-// document.getElementById('year-btn').addEventListener('click', () => showRequest('year'));
 
 function showRequest(timeframe) {
     const requestList = document.getElementById('request-list');
