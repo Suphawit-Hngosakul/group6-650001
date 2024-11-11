@@ -89,7 +89,7 @@ document.addEventListener("DOMContentLoaded", function () {
             }
 
             // เพิ่มคลาส highlight ให้ปุ่มแจ้งเตือนเพื่อทำให้เด่น
-            const notificationButton = document.querySelector('.notification-btn');
+            const notificationButton = document.getElementById('notification-btn');
             if (notificationButton) {
                 console.log("พบปุ่มแจ้งเตือน, กำลังเพิ่มคลาส highlight...");
                 notificationButton.classList.add('highlight');

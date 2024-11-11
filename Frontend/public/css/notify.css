@@ -1,6 +1,6 @@
 
 /* ปุ่มแจ้งเตือนใน sidebar */
-.notification-btn {
+#notification-btn {
     position: absolute; /* ใช้ absolute positioning */
     bottom: 20px; /* ตั้งให้ปุ่มอยู่ห่างจากด้านล่าง 20px */
     left: 0;
@@ -18,10 +18,13 @@
 }
 
 /* สไตล์สำหรับการเน้นปุ่มเป็นสีเขียว */
-.notification-btn.highlight {
+.highlight {
     background-color: #28a745; /* สีเขียว */
     box-shadow: 0 0 15px #28a745; /* เพิ่มเงาเพื่อให้ปุ่มดูเด่น */
     animation: pulseGreen 1s infinite; /* ทำให้ปุ่มกระพริบ */
+    padding: 10px;
+    border-radius: 50%;
+    margin-right: 5px;
 }
 
 @keyframes pulseGreen {
@@ -37,20 +40,20 @@
 }
 
 
-.notification-btn img {
+#notification-btn img {
     width: 22px; /* ขนาดไอคอนใหม่ */
     height: 22px; /* ขนาดไอคอนใหม่ */
     margin-right: 8px; /* ระยะห่างจากข้อความ */
     filter: brightness(0) invert(1); /* ทำให้ไอคอนเป็นสีขาว */
 }
 
-.notification-btn span {
+#notification-btn span {
     font-size: 16px; /* ปรับขนาดข้อความให้เหมาะสม */
     color: #333;
 }
 
 /* ปุ่มเมื่อ hover */
-.notification-btn:hover {
+#notification-btn:hover {
     background-color: #880d0d;
 }
 
