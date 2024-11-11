@@ -23,9 +23,13 @@ document.addEventListener("DOMContentLoaded", function() {
     }
 
     // แสดงคำร้องจาก formW
-    if (formW.length === 0) {
+    // ตรวจสอบว่ามีข้อมูลใน formW หรือ formADC หรือไม่
+    if (formW.length === 0 && formADC.length === 0) {
         requestList.innerHTML += "<p>ยังไม่มีข้อมูลคำร้อง</p>";
-    } else {
+    }
+
+    // แสดงคำร้องจาก formW
+    if (formW.length > 0) {
         formW.forEach((data, index) => {
             const type = formType[index] || "คำร้องการจดทะเบียนเพิ่ม-ถอนล่าช้า"; // ใช้ formType ที่จัดเก็บไว้
             renderRequest(data, index, type);
@@ -33,12 +37,11 @@ document.addEventListener("DOMContentLoaded", function() {
     }
 
     // แสดงคำร้องจาก formADC
-    if (formADC.length === 0) {
-        requestList.innerHTML += "<p>ยังไม่มีข้อมูลคำร้อง</p>";
-    } else {
+    if (formADC.length > 0) {
         formADC.forEach((data, index) => {
             const type = formType[index + formW.length] || "คำร้องขอลาพักการศึกษาปริญญาตรี"; // เพิ่มค่า index จาก formW เพื่อไม่ให้ชนกับ formADC
             renderRequest(data, index + formW.length, type);
         });
     }
+
 });
