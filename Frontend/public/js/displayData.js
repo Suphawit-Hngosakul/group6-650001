@@ -11,7 +11,7 @@ document.addEventListener("DOMContentLoaded", function() {
         const requestDiv = document.createElement('div');
         requestDiv.classList.add('request-item');
         requestDiv.innerHTML = `
-            <a href="html/Follow_item.html?index=${index}" class="item-request">
+            <a href="html/Follow_status.html?index=${index}" class="item-request">
                 <div class="box"></div>
                 <div class="content">
                     <h3>${type}</h3>
