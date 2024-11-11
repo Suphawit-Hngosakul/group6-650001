@@ -17,6 +17,25 @@
     transition: background-color 0.3s ease;
 }
 
+/* สไตล์สำหรับการเน้นปุ่มเป็นสีเขียว */
+.notification-btn.highlight {
+    background-color: #28a745; /* สีเขียว */
+    box-shadow: 0 0 15px #28a745; /* เพิ่มเงาเพื่อให้ปุ่มดูเด่น */
+    animation: pulseGreen 1s infinite; /* ทำให้ปุ่มกระพริบ */
+}
+
+@keyframes pulseGreen {
+    0% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.1);
+    }
+    100% {
+        transform: scale(1);
+    }
+}
+
 
 .notification-btn img {
     width: 22px; /* ขนาดไอคอนใหม่ */

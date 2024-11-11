@@ -64,7 +64,8 @@ document.addEventListener("DOMContentLoaded", function () {
                 email: emailInput.value,
                 subject: subjectInput.value,
                 reason: reasonInput.value,
-                requests: getCheckedRequests()
+                requests: getCheckedRequests(),
+                submittedAt: new Date().toLocaleString()
             };
 
             // Get existing data from localStorage or create an empty array
@@ -75,6 +76,26 @@ document.addEventListener("DOMContentLoaded", function () {
 
             // Save the updated array back to localStorage
             localStorage.setItem('formW', JSON.stringify(storedData));
+
+            // Update notification status in localStorage
+            localStorage.setItem('notificationStatus', 'submitted');
+
+            // อัปเดตข้อความใน popup และแสดง popup
+            const popup = document.getElementById('notification-popup');
+            const popupMessage = document.getElementById('popup-message');
+            if (popup && popupMessage) {
+                popupMessage.innerText = `ชื่อฟอร์ม: ${formTypeInput.value}\nเวลาที่ส่ง: ${formData.submittedAt}\nส่งสำเร็จ!`;
+                popup.style.display = 'flex'; // แสดง popup ทันที
+            }
+
+            // เพิ่มคลาส highlight ให้ปุ่มแจ้งเตือนเพื่อทำให้เด่น
+            const notificationButton = document.querySelector('.notification-btn');
+            if (notificationButton) {
+                console.log("พบปุ่มแจ้งเตือน, กำลังเพิ่มคลาส highlight...");
+                notificationButton.classList.add('highlight');
+            } else {
+                console.error("ไม่พบปุ่มที่มี class 'notification-btn' ใน DOM");
+            }
 
             alert("ส่งสำเร็จ");
             form.reset();
@@ -250,3 +271,15 @@ document.addEventListener("DOMContentLoaded", function () {
         }
     }
 });
+
+function toggleDropdown() {
+    var dropdown = document.getElementById("dropdown-content");
+    dropdown.style.display = dropdown.style.display === "block" ? "none" : "block";
+}
+
+function logout() {
+    localStorage.clear();
+
+    window.location.href = '../index.html';
+}
+
