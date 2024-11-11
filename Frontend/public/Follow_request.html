@@ -4,8 +4,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ระบบยื่นคำร้อง</title>
+    <link href="https://fonts.googleapis.com/css2?family=Prompt:wght@400;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="css/styles.css">
-    <link rel="stylesheet" href="css/work.css">
+    <link rel="stylesheet" href="css/itemRequest.css">
+    <!-- <link rel="stylesheet" href="css/requesttracking.css"> -->
     <link rel="stylesheet" href="css/notify.css">
 </head>
 <body>
@@ -26,7 +28,7 @@
     </nav>
     <!-- Sidebar -->
     <div class="menu-sidebar">
-        <a href="index.html">ยื่นคำร้อง</a>
+        <a href="home.html">ยื่นคำร้อง</a>
         <a href="Follow_request.html">ติดตามผลคำร้อง</a>
         <a href="History_request.html">ประวัติคำร้อง</a>
         <!-- ปุ่มการแจ้งเตือน -->
@@ -39,20 +41,8 @@
     <main class="follow_request">
         <h1 class="h-follow">ติดตามผลคำร้อง</h1>
         <hr>
-        <div class="tracking-cards">
-            <!-- การ์ดคำร้อง -->
-            <a href="Follow_RQ.html" class="tracking-card">
-                <div class="document-icon"></div>
-                <span>คำร้องการจดทะเบียนเพิ่ม-ถอน</span>
-            </a>
-            <a href="Follow_RQ.html" class="tracking-card">
-                <div class="document-icon"></div>
-                <span>คำร้องขอลาพักการศึกษา</span>
-            </a>
-            <a href="Follow_RQ.html" class="tracking-card">
-                <div class="document-icon"></div>
-                <span>คำร้องกรณีขาดสอบ</span>
-            </a>
+        <div id="request-list">
+            
         </div>
     </main>
 
@@ -66,6 +56,7 @@
     
     <script src="js/notify.js"></script>
     <script src="js/script.js"></script>
+    <script src="js/displayData.js"></script>
 </body>
 
 <script>
@@ -85,7 +76,7 @@
     function logout() {
     sessionStorage.clear();
 
-    window.location.href = 'login.html';
+    window.location.href = 'index.html';
 }
 </script>
 

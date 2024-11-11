@@ -102,39 +102,145 @@ function logout() {
 }
 
 // =======================================================================================
-// ฟังก์ชันที่แสดงรายการคำร้องเมื่อคลิกที่ "สัปดาห์ก่อน", "เดือนก่อน", หรือ "ปีก่อน"
+// function showRequest(timeframe) {
+//     const requestList = document.getElementById('request-list');
+    
+//     const formW = JSON.parse(localStorage.getItem('formW')) || [];
+//     const formADC = JSON.parse(localStorage.getItem('formADC')) || [];
+//     const allRequests = [...formW, ...formADC];
+
+//     function filterRequestsByTimeframe(requests, timeframe) {
+//         const now = new Date();
+//         let filteredRequests = [];
+
+//         requests.forEach(request => {
+//             const requestDate = new Date(request.date);
+//             const diffTime = now - requestDate;
+
+//             switch (timeframe) {
+//                 case 'week':
+//                     if (diffTime <= 7 * 24 * 60 * 60 * 1000) {
+//                         filteredRequests.push(request);
+//                     }
+//                     break;
+//                 case 'month':
+//                     if (diffTime > 7 * 24 * 60 * 60 * 1000 && diffTime <= 30 * 24 * 60 * 60 * 1000) {
+//                         filteredRequests.push(request);
+//                     }
+//                     break;
+//                 case 'year':
+//                     if (diffTime > 30 * 24 * 60 * 60 * 1000 && diffTime <= 365 * 24 * 60 * 60 * 1000) {
+//                         filteredRequests.push(request);
+//                     }
+//                     break;
+//             }
+//         });
+
+//         return filteredRequests;
+//     }
+
+//     function sortRequestsByDate(requests) {
+//         return requests.sort((a, b) => new Date(b.date) - new Date(a.date));
+//     }
+
+//     const filteredRequests = filterRequestsByTimeframe(allRequests, timeframe);
+//     const sortedRequests = sortRequestsByDate(filteredRequests);
+
+//     if (sortedRequests.length > 0) {
+//         requestList.innerHTML = `<h3>คำร้องที่ยื่น ${timeframe === 'week' ? 'สัปดาห์ก่อน' : (timeframe === 'month' ? 'เดือนก่อน' : 'ปีก่อน')}</h3>`;
+//         const listHTML = sortedRequests.map(request => `
+//             <div class="request-item">
+//                 <div class="box"></div>
+//                 <div class="content">
+//                     <h3>${request.formType}</h3>
+//                     <h4>${request.date}</h4>
+//                 </div>
+//             </div>
+//         `).join('');
+//         requestList.innerHTML += listHTML;
+//     } else {
+//         requestList.innerHTML = `<p>ไม่มีคำร้องในช่วงเวลานี้</p>`;
+//     }
+// }
+
+// // ตัวอย่างการใช้งาน
+// document.getElementById('week-btn').addEventListener('click', () => showRequest('week'));
+// document.getElementById('month-btn').addEventListener('click', () => showRequest('month'));
+// document.getElementById('year-btn').addEventListener('click', () => showRequest('year'));
+
 function showRequest(timeframe) {
-    const requestList = document.getElementById('request-list'); // หาช่องแสดงรายการคำร้อง
+    const requestList = document.getElementById('request-list');
     
-    // ข้อมูลตัวอย่างคำร้องสำหรับแต่ละช่วงเวลา
-    const requests = {
-        'week': ['คำร้อง 1', 'คำร้อง 2', 'คำร้อง 3'],  // คำร้องที่ยื่นในสัปดาห์ก่อน
-        'month': ['คำร้อง 4', 'คำร้อง 5'],  // คำร้องที่ยื่นในเดือนก่อน
-        'year': ['คำร้อง 6', 'คำร้อง 7', 'คำร้อง 8', 'คำร้อง 9']  // คำร้องที่ยื่นในปีก่อน
-    };
-    
-    // เช็คข้อมูลคำร้องที่เกี่ยวข้องกับช่วงเวลาที่คลิก
-    const requestItems = requests[timeframe] || []; // หากไม่มีข้อมูลจะใช้ array ว่างๆ
-    
-    // ตรวจสอบว่ามีคำร้องหรือไม่
-    if (requestItems.length > 0) {
-        // แสดงหัวข้อสำหรับรายการคำร้องในช่วงเวลานั้น
+    const formW = JSON.parse(localStorage.getItem('formW')) || [];
+    const formADC = JSON.parse(localStorage.getItem('formADC')) || [];
+    const allRequests = [...formW, ...formADC];
+
+    function filterRequestsByTimeframe(requests, timeframe) {
+        const now = new Date();
+        let filteredRequests = [];
+
+        requests.forEach(request => {
+            const requestDate = new Date(request.date);
+            const diffTime = now - requestDate;
+
+            switch (timeframe) {
+                case 'week':
+                    if (diffTime <= 7 * 24 * 60 * 60 * 1000) {
+                        filteredRequests.push(request);
+                    }
+                    break;
+                case 'month':
+                    if (diffTime > 7 * 24 * 60 * 60 * 1000 && diffTime <= 30 * 24 * 60 * 60 * 1000) {
+                        filteredRequests.push(request);
+                    }
+                    break;
+                case 'year':
+                    if (diffTime > 30 * 24 * 60 * 60 * 1000 && diffTime <= 365 * 24 * 60 * 60 * 1000) {
+                        filteredRequests.push(request);
+                    }
+                    break;
+            }
+        });
+
+        return filteredRequests;
+    }
+
+    function sortRequestsByDate(requests) {
+        return requests.sort((a, b) => new Date(b.date) - new Date(a.date));
+    }
+
+    function getFormTypeDescription(formType) {
+        switch (formType) {
+            case 'requestW':
+                return 'คำร้องการจดทะเบียนเพิ่ม-ถอนล่าช้า';
+            case 'Requestacademicleave':
+                return 'คำร้องขอลาพักการศึกษาปริญญาตรี';
+            default:
+                return 'คำร้องอื่นๆ';
+        }
+    }
+
+    const filteredRequests = filterRequestsByTimeframe(allRequests, timeframe);
+    const sortedRequests = sortRequestsByDate(filteredRequests);
+
+    if (sortedRequests.length > 0) {
         requestList.innerHTML = `<h3>คำร้องที่ยื่น ${timeframe === 'week' ? 'สัปดาห์ก่อน' : (timeframe === 'month' ? 'เดือนก่อน' : 'ปีก่อน')}</h3>`;
-        // สร้างลิสต์คำร้องและเพิ่มเข้าไปในช่องแสดง
-        const listHTML = requestItems.map(item => `<div class="request-item">${item}</div>`).join('');
+        const listHTML = sortedRequests.map(request => `
+            <div class="request-item">
+                <div class="box"></div>
+                <div class="content">
+                    <h3>${getFormTypeDescription(request.formType)}</h3>
+                    <h4>${request.date}</h4>
+                </div>
+            </div>
+        `).join('');
         requestList.innerHTML += listHTML;
     } else {
-        // หากไม่มีคำร้องในช่วงเวลานั้นๆ แสดงข้อความนี้
         requestList.innerHTML = `<p>ไม่มีคำร้องในช่วงเวลานี้</p>`;
     }
 }
 
-document.getElementById('togglePassword').addEventListener('click', function () {
-    const passwordField = document.getElementById('password');
-    const type = passwordField.getAttribute('type') === 'password' ? 'text' : 'password';
-    passwordField.setAttribute('type', type);
-
-    // เปลี่ยนข้อความและไอคอน
-    this.textContent = type === 'password' ? ' Show' : ' Hide';
-    this.classList.toggle('show-password');
-});
+// ตัวอย่างการใช้งาน
+document.getElementById('week-btn').addEventListener('click', () => showRequest('week'));
+document.getElementById('month-btn').addEventListener('click', () => showRequest('month'));
+document.getElementById('year-btn').addEventListener('click', () => showRequest('year'));

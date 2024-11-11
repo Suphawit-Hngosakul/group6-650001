@@ -37,6 +37,9 @@
     <h2 class="h10">มหาวิทยาลัยธรรมศาสตร์</h2>
     <hr>
     <form id="requestForm" action="#" method="post">
+        <!-- Formtype -->
+        <input type="hidden" name="formType" value="requestW">
+
         <!-- วันที่ -->
         <div class="form-row">
             <label for="date" class="date-label">วันที่</label>
@@ -87,11 +90,11 @@
         <div class="request-section">
             <div class="request-section-title">มีความประสงค์จะ</div>
             <div class="request-options">
-                <label><input type="checkbox" class="single-check" name="request" value="register">
+                <label><input type="checkbox" class="single-check" name="request" value="จดทะเบียนเรียนล่าช้าเป็นกรณีพิเศษ">
                     จดทะเบียนเรียนล่าช้าเป็นกรณีพิเศษ</label>
-                <label><input type="checkbox" class="single-check" name="request" value="add">
+                <label><input type="checkbox" class="single-check" name="request" value="จดทะเบียนเพิ่มล่าช้าเป็นกรณีพิเศษ">
                     จดทะเบียนเพิ่มล่าช้าเป็นกรณีพิเศษ</label>
-                <label><input type="checkbox" class="single-check" name="request" value="withdraw">
+                <label><input type="checkbox" class="single-check" name="request" value="จดทะเบียนถอนล่าช้าเป็นกรณีพิเศษ">
                     จดทะเบียนถอนล่าช้าเป็นกรณีพิเศษ</label>
                 <label><input type="checkbox" class="single-check" name="request" value="drop"> จดทะเบียนเพิก-ถอน
                     (Drop W)
@@ -141,6 +144,7 @@
 </main>
 
     <script src="../js/requestW.js"></script>
+    
 </body>
 
 <script>
@@ -152,7 +156,7 @@
             document.getElementById('user-ID').innerText = user.studentID;
             document.getElementById('user-email').innerText = user.email;
         } else {
-            window.location.href = '../login.html';
+            window.location.href = '../index.html';
         }
     });
 </script>

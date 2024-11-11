@@ -560,3 +560,10 @@ label {
 .error {
     border: 1px solid red;
 }
+
+/* สไตล์ข้อความ error */
+.error-message {
+    color: red;  /* สีแดงสำหรับข้อความ error */
+    font-size: 14px;  /* ขนาดฟอนต์ของข้อความ error */
+    margin-top: 5px;  /* ระยะห่างด้านบน */
+}

@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ระบบยื่นคำร้อง</title>
+    <link rel="stylesheet" href="../css/styles.css">
+    <link rel="stylesheet" href="../css/form.css">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="user-info" onclick="toggleDropdown()">
+            <div class="user-details">
+                <span id="user-name">ชื่อผู้ใช้</span>
+                <span id="user-ID">6609650000</span>
+            </div>
+            <img src="img/user-image.png" alt="User Image" class="user-image">
+            
+            <!-- Dropdown content -->
+            <div id="dropdown-content" class="dropdown-content">
+                <a href="#" id="user-email">user@example.com</a>
+                <a href="#" onclick="logout()">Logout</a>
+            </div>
+        </div>
+    </nav>
+    <!-- Sidebar -->
+    <div class="menu-sidebar">
+        <a href="../Follow_request.html">ย้อนกลับ</a>
+    </div>
+
+    <main class="follow_request">
+        <div id="request-details"></div>
+        
+    </main>
+    
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+        const urlParams = new URLSearchParams(window.location.search);
+        const index = urlParams.get('index');
+
+        // อ่านข้อมูลจาก localStorage ที่เก็บไว้ใน formW และ formadc
+        const formW = JSON.parse(localStorage.getItem('formW')) || [];
+        const formadc = JSON.parse(localStorage.getItem('formADC')) || [];
+
+        // รวมข้อมูลจาก formW และ formadc
+        const storedData = [...formW, ...formadc];
+
+        if (index !== null && storedData[index]) {
+            const data = storedData[index];
+            
+            // สร้างฟอร์มและใส่ข้อมูลจาก storedData
+            const container = document.getElementById('request-details');
+            if (data.formType === "requestW") {
+                container.innerHTML = `
+                    <main class="infromation">
+                        <h2 class="form-title">แบบฟอร์มคำร้องการจดทะเบียนเพิ่ม-ถอนล่าช้า</h2>
+                        <h2 class="h10">มหาวิทยาลัยธรรมศาสตร์</h2>
+                        <hr>
+                        <form id="requestForm" action="#" method="post">
+                            <div class="form-row">
+                                <label for="date" class="date-label">วันที่</label>
+                                <input type="date" id="date" name="date" value="${data.date}" readonly class="date-input">
+                            </div>
+                            
+                            <div class="form-row1">
+                                <label for="dean-name" class="dean-label">เรียน ท่านคณบดี</label>
+                                <input type="text" id="dean-name" name="dean-name" value="${data.deanName}" readonly class="dean-input">
+                                <span>(ผ่านอาจารย์ที่ปรึกษา)</span>
+                            </div>
+                            
+                            <div class="form-row2">
+                                <label for="self-name" class="self-name-label">ข้าพเจ้า</label>
+                                <input type="text" id="self-name" name="self-name" value="${data.selfName}" readonly class="self-name-input">
+                                <label for="student-id" class="student-id-label">เลขทะเบียน</label>
+                                <input type="text" id="student-id" name="student-id" value="${data.studentId}" readonly class="student-id-input">
+                            </div>
+                            
+                            <div class="form-row3">
+                                <label for="faculty" class="faculty-label">คณะ</label>
+                                <input type="text" id="faculty" name="faculty" value="${data.faculty}" readonly class="faculty-input">
+                                <label for="year" class="self-year-label">ชั้นปีที่</label>
+                                <input type="number" id="year" value="${data.year}" readonly class="self-year-input">
+                            </div>
+                            
+                            <div class="form-row9">
+                                <label for="contact-address" class="contact-address-label">ที่อยู่ที่ติดต่อ</label>
+                                <input type="text" id="contact-address" value="${data.address}" readonly class="contact-input">
+                            </div>
+                            
+                            <div class="form-row10">
+                                <span>โทรศัพท์มือถือ:</span>
+                                <input type="tel" id="phone" value="${data.phone}" readonly class="phone-input">
+                                <label id="emailLabel" for="email">E-mail:</label>
+                                <input type="email" id="email" value="${data.email}" readonly class="email-input">
+                            </div>
+                            
+                            <div class="request-section">
+                                <div class="request-section-title">มีความประสงค์จะ</div>
+                                <div class="request-options">
+                                    ${data.requests.map(request => `
+                                        <label>
+                                            <input type="checkbox" checked disabled> ${request}
+                                        </label>
+                                    `).join('')}
+                                </div>
+                            </div>
+                            
+                            <div class="form-row4">
+                                <label for="subject">รหัสวิชา / ชื่อวิชา / Section / (วัน/เวลา) / หน่วยกิต / ชื่อผู้สอน / ลายเซ็นผู้สอน</label>
+                                <textarea id="subject" rows="4" readonly>${data.subject}</textarea>
+                            </div>
+                            
+                            <div class="form-row4">
+                                <label for="reason">ชี้แจงเหตุผลเพิ่มเติม</label>
+                                <textarea id="reason" rows="4" readonly>${data.reason}</textarea>
+                            </div>
+                            
+                            <div class="form-row11">
+                                <span>ขอแสดงความนับถือ</span>
+                            </div>
+                            
+                            <div class="form-row12">
+                                <input type="text" class="signature-input" value="${data.signature || ''}" readonly placeholder="ลงชื่อ">
+                            </div>
+                        </form>
+                    </main>
+            `;
+            } 
+            // else if (data.formType === "Requestacademicleave") {
+            //     container.innerHTML = `
+            //         <main class="infromation">
+            //             <h2 class="form-title">แบบฟอร์มคำร้องขอลาพักการศึกษาปริญญาตรี</h2>
+            //             <h2 class="h10">มหาวิทยาลัยธรรมศาสตร์</h2>
+            //             <hr>
+            //             <form id="requestForm" action="#" method="post">
+            //                 <div class="form-row">
+            //                     <label for="date" class="date-label">วันที่</label>
+            //                     <input type="date" id="date" name="date" value="${data.date}" readonly class="date-input">
+            //                 </div>
+                            
+            //                 <div class="form-row1">
+            //                     <label for="dean-name" class="dean-label">เรียน ท่านคณบดี</label>
+            //                     <input type="text" id="dean-name" name="dean-name" value="${data.deanName}" readonly class="dean-input">
+            //                     <span> (ผ่านอาจารย์ที่ปรึกษา) </span>
+            //                 </div>
+                            
+            //                 <div class="form-row2">
+            //                     <label for="self-name" class="self-name-label">ข้าพเจ้า</label>
+            //                     <input type="text" id="self-name" name="self-name" value="${data.selfName}" readonly class="self-name-input">
+                                
+            //                     <label for="student-id" class="student-id-label">เลขทะเบียน</label>
+            //                     <input type="text" id="student-id" name="student-id" value="${data.studentId}" readonly class="student-id-input">
+            //                 </div>
+                            
+            //                 <div class="form-row3">
+            //                     <label class="education-status-label">เป็นนักศึกษาปริญญาตรี</label>
+            //                     <div class="education-status">
+            //                         <input type="radio" id="regular" name="education-status" value="ภาคปกติ" ${data.educationStatus === 'ภาคปกติ' ? 'checked' : ''} disabled>
+            //                         <label for="regular" class="regular-label">ภาคปกติ</label>
+            //                         <input type="radio" id="graduate" name="education-status" value="ภาคบัณฑิต" ${data.educationStatus === 'ภาคบัณฑิต' ? 'checked' : ''} disabled>
+            //                         <label for="graduate" class="graduate-label">ภาคบัณฑิต</label>
+            //                     </div>
+                                
+            //                     <label for="advisor-name" class="advisor-label">ชื่ออาจารย์ที่ปรึกษา</label>
+            //                     <input type="text" id="advisor-name" name="advisor-name" value="${data.advisorName}" readonly class="advisor-input">
+            //                 </div>
+                            
+            //                 <div class="form-row4">
+            //                     <label for="reason">มีความประสงค์ขอลาพักการศึกษา เนื่องจาก</label>
+            //                     <textarea id="reason" name="reason" rows="2" readonly class="reason-input">${data.reason}</textarea>
+            //                 </div>
+                            
+            //                 <div class="form-row5">
+            //                     <label>ดังนั้น จึงขออนุญาตลาพักการศึกษาในภาค</label>
+            //                     <input type="text" id="term" value="${data.term}" readonly class="term-input">
+            //                     <label>รวม</label>
+            //                     <input type="text" id="totalTerms" value="${data.totalTerms}" readonly class="totalTerms-input">
+            //                     <label>ภาคการศึกษา</label>
+            //                 </div>
+                            
+            //                 <div class="form-row6">
+            //                     โดย <input type="radio" name="register-option" class="custom-radio" id="option-1" ${data.registerOption === 'option-1' ? 'checked' : ''} disabled> ไม่ได้จดทะเบียนลักษณะวิชาในภาค
+            //                     <input type="text" class="semester-input" id="semester-input-1" value="${data.semesterInput1}" readonly>
+            //                 </div>
+                            
+            //                 <div class="form-row7">
+            //                     <input type="radio" name="register-option" class="custom-radio" id="option-2" ${data.registerOption === 'option-2' ? 'checked' : ''} disabled> ได้จดทะเบียนเรียนลักษณะวิชาในภาค
+            //                     <input type="text" class="semester-input" id="semester-input-2" value="${data.semesterInput2}" readonly> ดังนี้ (เขียนรหัสวิชา)
+            //                 </div>
+                            
+            //                 <div class="form-row8">
+            //                     <input type="text" class="course-code-input" id="course-code-input" value="${data.courseCode}" readonly>
+            //                 </div>
+                            
+            //                 <div class="form-row9">
+            //                     ในระหว่างที่ลาพักนี้จะติดต่อข้าพเจ้าได้ที่ <input type="text" class="contact-input" value="${data.contact}" readonly>
+            //                 </div>
+                            
+            //                 <div class="form-row10">
+            //                     <span>โทรศัพท์</span>
+            //                     <input type="text" id="phone" name="phone" value="${data.phone}" readonly class="phone-input">
+            //                     <span id="phoneError">รูปแบบเบอร์โทรไม่ถูกต้อง</span><br><br>
+            //                 </div>
+                            
+            //                 <div class="form-row11">
+            //                     <span>ขอแสดงความนับถือ</span>
+            //                 </div>
+                            
+            //                 <div class="form-row12">
+            //                     <input type="text" class="signature-input" value="${data.signature || ''}" readonly placeholder="ลงชื่อ">
+            //                 </div>
+            //             </form>
+            //         </main>
+            //     `;
+            // }
+            
+        } else {
+            container.innerHTML = "<p>ไม่พบข้อมูลคำร้องที่ต้องการ</p>";
+        }
+    });
+    </script>
+</body>
+</html>
