@@ -5,8 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>แบบฟอร์มคำร้องขอลาพักการศึกษา</title>
     <!--<link rel="stylesheet" href="../css/form.css"> ติดไว้ก่อน -->
-    <!--<link rel="stylesheet" href="../css/styles.css"> ติดไว้ก่อน --> 
+    <link rel="stylesheet" href="../css/styles.css">
     <link rel="stylesheet" href="../css/reLeave.css">
+
 </head>
 <body>
     <nav class="navbar">
@@ -15,7 +16,7 @@
                 <span id="user-name">ชื่อผู้ใช้</span>
                 <span id="user-ID">6609650000</span>
             </div>
-            <img src="img/user-image.png" alt="User Image" class="user-image">
+            <img src="../img/user-image.png" alt="User Image" class="user-image">
             
             <!-- Dropdown content -->
             <div id="dropdown-content" class="dropdown-content">
@@ -27,9 +28,7 @@
 
     <!-- Sidebar -->
     <div class="menu-sidebar">
-        <a href="#">ยื่นคำร้อง</a>
-        <a href="#">ติดตามผลคำร้อง</a>
-        <a href="#">ประวัติคำร้อง</a>
+        <a href="../home.html">ย้อนกลับ</a>
     </div>
 
     <!-- Main Form Content -->
@@ -37,7 +36,10 @@
         <h2 class="form-title">แบบฟอร์มคำร้องขอลาพักการศึกษาปริญญาตรี</h2>
         <h2 class="h10">มหาวิทยาลัยธรรมศาสตร์</h2>
         <hr>
-        <form action="#" method="post">
+        <form id="requestForm" action="#" method="post">
+            <!-- Formtype -->
+            <input type="hidden" name="formType" value="Requestacademicleave">
+
             <div class="form-row">
                 <label for="date" class="date-label">วันที่</label>
                 <input type="date" id="date" name="date" required class="date-input">
@@ -58,9 +60,9 @@
             <div class="form-row3">
                 <label class="education-status-label">เป็นนักศึกษาปริญญาตรี</label>
                 <div class="education-status">
-                    <input type="radio" id="regular" name="education-status" value="regular" required>
+                    <input type="radio" id="regular" name="education-status" value="ภาคปกติ" required>
                     <label for="regular" class="regular-label">ภาคปกติ</label>
-                    <input type="radio" id="graduate" name="education-status" value="graduate" required>
+                    <input type="radio" id="graduate" name="education-status" value="ภาคบัณฑิต" required>
                     <label for="graduate" class="graduate-label">ภาคบัณฑิต</label>
                 </div>
                 <label for="advisor-name" class="advisor-label">ชื่ออาจารย์ที่ปรึกษา</label>
@@ -112,4 +114,19 @@
 
     <script src="../js/reLeave.js"></script>
 </body>
+
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        const user = JSON.parse(localStorage.getItem('user'));
+
+        if (user) {
+            document.getElementById('user-name').innerText = user.username;
+            document.getElementById('user-ID').innerText = user.studentID;
+            document.getElementById('user-email').innerText = user.email;
+        } else {
+            window.location.href = '../index.html';
+        }
+    });
+</script>
+
 </html>

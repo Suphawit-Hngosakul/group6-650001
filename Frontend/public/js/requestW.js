@@ -1,16 +1,6 @@
-function toggleDropdown() {
-    var dropdown = document.getElementById("dropdown-content");
-    dropdown.style.display = dropdown.style.display === "block" ? "none" : "block";
-}
-
-function logout() {
-    sessionStorage.clear();
-    
-    window.location.href = '../index.html';
-}
-
 document.addEventListener("DOMContentLoaded", function () {
     const form = document.getElementById("requestForm");
+    const formTypeInput = document.querySelector("input[name='formType']");
     const dateInput = document.getElementById("date");
     const deanInput = document.getElementById("dean-name");
     const selfNameInput = document.getElementById("self-name");
@@ -19,7 +9,6 @@ document.addEventListener("DOMContentLoaded", function () {
     const yearInput = document.querySelector(".self-year-input");
     const addressInput = document.querySelector(".contact-input");
     const phoneInput = document.querySelector(".phone-input[type='tel']");
-    const emailLabel = document.getElementById("emailLabel"); 
     const emailInput = document.querySelector(".email-input");
     const subjectInput = document.getElementById("subject"); // Subject code input
     const reasonInput = document.getElementById("reason"); // Additional reason input
@@ -60,12 +49,50 @@ document.addEventListener("DOMContentLoaded", function () {
         const allValid = validateForm();
 
         if (allValid) {
+            // Collect form data into an object
+            const formData = {
+
+                formType: formTypeInput.value,
+                date: dateInput.value,
+                deanName: deanInput.value,
+                selfName: selfNameInput.value,
+                studentId: studentIdInput.value,
+                faculty: facultyInput.value,
+                year: yearInput.value,
+                address: addressInput.value,
+                phone: phoneInput.value,
+                email: emailInput.value,
+                subject: subjectInput.value,
+                reason: reasonInput.value,
+                requests: getCheckedRequests()
+            };
+
+            // Get existing data from localStorage or create an empty array
+            let storedData = JSON.parse(localStorage.getItem('formW')) || [];
+
+            // Push the new data to the array
+            storedData.push(formData);
+
+            // Save the updated array back to localStorage
+            localStorage.setItem('formW', JSON.stringify(storedData));
+
             alert("ส่งสำเร็จ");
             form.reset();
         } else {
             alert("ส่งไม่สำเร็จ โปรดตรวจสอบข้อมูลและจุดประสงค์อีกครั้ง");
         }
     });
+
+    // Function to get the checked request types
+    function getCheckedRequests() {
+        const checked = [];
+        checkboxes.forEach(checkbox => {
+            if (checkbox.checked) {
+                checked.push(checkbox.value);
+            }
+        });
+        return checked;
+    }
 
     // Main validation function
     function validateForm() {
@@ -198,32 +225,28 @@ document.addEventListener("DOMContentLoaded", function () {
     // Helper functions to show and clear error messages
     function showError(input, message, errorId) {
         if (!document.getElementById(errorId)) {
-            const error = document.createElement("div");
-            error.classList.add("error-message");
-            error.style.color = "red";
-            error.style.fontSize = "0.9em";
-            error.innerText = message;
-            error.id = errorId;
-            input.parentElement.appendChild(error);
-        }
-    }
-
-    function showErrorBeforeLabel(element, message, errorId) {
-        if (!document.getElementById(errorId)) {
-            const error = document.createElement("div");
-            error.classList.add("error-message");
-            error.style.color = "red";
-            error.style.fontSize = "0.9em";
-            error.innerText = message;
-            error.id = errorId;
-            element.parentElement.insertBefore(error, element);
+            const errorMessage = document.createElement("div");
+            errorMessage.classList.add("error-message");
+            errorMessage.id = errorId;
+            errorMessage.innerText = message;
+            input.insertAdjacentElement("afterend", errorMessage);
         }
     }
 
     function clearError(errorId) {
-        const error = document.getElementById(errorId);
-        if (error) {
-            error.remove();
+        const errorMessage = document.getElementById(errorId);
+        if (errorMessage) {
+            errorMessage.remove();
+        }
+    }
+
+    function showErrorBeforeLabel(label, message, errorId) {
+        if (!document.getElementById(errorId)) {
+            const errorMessage = document.createElement("div");
+            errorMessage.classList.add("error-message");
+            errorMessage.id = errorId;
+            errorMessage.innerText = message;
+            label.insertAdjacentElement("beforebegin", errorMessage);
         }
     }
 });
