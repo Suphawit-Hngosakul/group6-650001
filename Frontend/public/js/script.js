@@ -37,8 +37,13 @@ function submitLogin() {
             email: data.email
         }));
 
-        // ย้ายไปที่หน้า index.html
-        window.location.href = 'home.html';
+        if (data.type === 'employee') {
+            window.location.href = 'employeehome.html';
+        }else {
+            // ย้ายไปที่หน้า index.html
+            window.location.href = 'home.html';
+        }
+        
     })
     .catch(error => {
         document.getElementById('message').innerText = 'Error: ' + error.message;
