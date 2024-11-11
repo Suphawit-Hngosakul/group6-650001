@@ -225,44 +225,28 @@ function showRequest(timeframe) {
 
     if (sortedRequests.length > 0) {
         requestList.innerHTML = `<h3>คำร้องที่ยื่น ${timeframe === 'week' ? 'สัปดาห์ก่อน' : (timeframe === 'month' ? 'เดือนก่อน' : 'ปีก่อน')}</h3>`;
-        const listHTML = sortedRequests.map(request => `
-            <div class="request-item">
-                <div class="box"></div>
+        const sortedIndices = sortedRequests.map(request => allRequests.indexOf(request));
+        localStorage.setItem('sortedIndices', JSON.stringify(sortedIndices));
+
+        const listHTML = sortedRequests.map((request, index) => `
+            <a href="html/Follow_item.html?index=${index}" class="request-item">
                 <div class="content">
                     <h3>${getFormTypeDescription(request.formType)}</h3>
                     <h4>${request.date}</h4>
                 </div>
-            </div>
+            </a>
         `).join('');
+
+
+
         requestList.innerHTML += listHTML;
     } else {
-        requestList.innerHTML = `<p>ไม่มีคำร้องในช่วงเวลานี้</p>`;
+        requestList.innerHTML = `<h3>ไม่มีคำร้องในช่วงเวลานี้</h3>`;
     }
 }
-
-document.addEventListener('DOMContentLoaded', function () {
-    const togglePasswordButton = document.getElementById('togglePassword');
-    if (togglePasswordButton) {
-        // ตรวจสอบว่า togglePasswordButton ไม่ใช่ null ก่อนเพิ่ม event listener
-        togglePasswordButton.addEventListener('click', function () {
-            const passwordField = document.getElementById('password');
-            if (passwordField) {
-                const type = passwordField.getAttribute('type') === 'password' ? 'text' : 'password';
-                passwordField.setAttribute('type', type);
-
-                // เปลี่ยนข้อความและไอคอน
-                this.textContent = type === 'password' ? ' Show' : ' Hide';
-                this.classList.toggle('show-password');
-            } else {
-                console.error("ไม่พบ element ที่มี id 'password'");
-            }
-        });
-    } else {
-        console.error("ไม่พบปุ่มที่มี id 'togglePassword'");
-    }
-});
 
 // ตัวอย่างการใช้งาน
 document.getElementById('week-btn').addEventListener('click', () => showRequest('week'));
 document.getElementById('month-btn').addEventListener('click', () => showRequest('month'));
 document.getElementById('year-btn').addEventListener('click', () => showRequest('year'));
+
