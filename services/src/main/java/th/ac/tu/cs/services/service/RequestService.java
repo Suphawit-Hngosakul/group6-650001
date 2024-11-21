@@ -12,6 +12,9 @@ public class RequestService {
     @Autowired
     private RequestRepository repository;
 
+    @Autowired
+    private EmailService emailService;
+
     //Student
     public Request getRequestById(Long id) {
         return repository.findById(id).orElse(null);
@@ -24,6 +27,12 @@ public class RequestService {
     public Request createRequest(Request request) {
         request.setStatus("PENDING");
         Request savedRequest = repository.save(request);
+
+        // ส่งอีเมลแจ้งนักศึกษา
+        String subject = "Your Request Has Been Submitted";
+        String text = "Dear " + request.getStudentName() + ",\n\nYour request has been successfully submitted. "
+                + "We will process it soon.\n\nThank you.";
+        emailService.sendEmail(request.getEmail(), subject, text);
 
         return savedRequest;
     }
@@ -41,6 +50,11 @@ public class RequestService {
         request.setDetails(details);
         Request updatedRequest = repository.save(request);
 
+        // ส่งอีเมลแจ้งนักศึกษาเมื่อสถานะเปลี่ยน
+        String subject = "Your Request Status Has Been Updated";
+        String text = "Dear " + request.getStudentName() + ",\n\nThe status of your request has been updated to: "
+                + status + ".\nDetails: " + details + "\n\nThank you.";
+        emailService.sendEmail(request.getEmail(), subject, text);
 
         return updatedRequest;
     }
