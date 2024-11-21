@@ -5,16 +5,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ระบบยื่นคำร้อง</title>
     <link href="https://fonts.googleapis.com/css2?family=Prompt:wght@400;600&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="css/styles.css">
-    <link rel="stylesheet" href="css/itemRequest.css">
-
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/itemRq.css">
 </head>
 <body>
     <nav class="navbar">
         <div class="user-info" onclick="toggleDropdown()">
             <div class="user-details">
                 <span id="user-name">ชื่อผู้ใช้</span>
-                <span id="user-ID" hidden>6609650000</span>
+                <span id="user-ID">6609650000</span>
             </div>
             <img src="img/user-image.png" alt="User Image" class="user-image">
             
@@ -27,7 +26,14 @@
     </nav>
     <!-- Sidebar -->
     <div class="menu-sidebar">
-        <a href="employeehome.html">คำร้องนักศึกษา</a>
+        <a href="home.html">ยื่นคำร้อง</a>
+        <a href="followRequest.html">ติดตามผลคำร้อง</a>
+        <a href="historyRequest.html">ประวัติคำร้อง</a>
+        <!-- ปุ่มการแจ้งเตือน -->
+        <!-- <button id="notification-btn" onclick="toggleNotification()">
+            <img src="https://img.icons8.com/ios-filled/50/000000/appointment-reminders.png" alt="alert-icon"/>
+            การแจ้งเตือน
+        </button> -->
     </div>
 
     <main class="follow_request">
@@ -37,24 +43,17 @@
             
         </div>
     </main>
+
+    <!-- ป๊อปอัพแจ้งเตือน -->
+    <!-- <div id="notification-popup" class="popup">
+        <div class="popup-content">
+            <span class="close-btn" onclick="toggleNotification()">&times;</span>
+            <h3 id="popup-message">ไม่มีอะไรใหม่</h3> 
+        </div>
+    </div> -->
     
-    <script src="js/script.js"></script>
-    <script src="js/ShowDatestudent.js"></script>
+    <script src="js/menu.js"></script>
+    <script src="js/getdata.js"></script>
 </body>
-
-<script>
-    document.addEventListener('DOMContentLoaded', () => {
-        const user = JSON.parse(localStorage.getItem('user'));
-
-        if (user) {
-            document.getElementById('user-name').innerText = user.username;
-            document.getElementById('user-ID').innerText = user.studentID;
-            document.getElementById('user-email').innerText = user.email;
-        } else {
-            window.location.href = 'index.html';
-        }
-    });
-    
-</script>
 
 </html>

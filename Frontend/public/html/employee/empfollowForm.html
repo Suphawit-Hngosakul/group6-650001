@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ระบบยื่นคำร้อง</title>
+    <link rel="stylesheet" href="../../css/style.css">
+    <link rel="stylesheet" href="../../css/emp.css">
+    <link rel="stylesheet" href="../../css/form.css">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="user-info" onclick="toggleDropdown()">
+            <div class="user-details">
+                <span id="user-name">ชื่อผู้ใช้</span>
+
+            </div>
+            <img src="../../img/user-image.png" alt="User Image" class="user-image">
+            
+            <!-- Dropdown content -->
+            <div id="dropdown-content" class="dropdown-content">
+                <a href="#" id="user-email">user@example.com</a>
+                <a href="#" onclick="logout()">Logout</a>
+            </div>
+        </div>
+    </nav>
+    <!-- Sidebar -->
+    <div class="menu-sidebar">
+        <a href="emphome.html">ย้อนกลับ</a>
+    </div>
+
+    <main class="follow_request">
+        <div id="request-details"></div>
+
+    <div class="buttons-container">
+            <button id="approve-btn" onclick="updateStatus('APPROVED')">อนุมัติ</button>
+            <button id="need-more-info-btn" onclick="updateStatus('NEED_MORE_INFO')">ขอข้อมูลเพิ่มเติม</button>
+            <button id="reject-btn" onclick="updateStatus('REJECTED')">ปฏิเสธ</button>
+        </div>
+    </main>
+    
+    <script src="../../js/menu.js"></script>
+    <script src="../../js/empupdateStatus.js"></script>
+    <script src="../../js/loadform.js"></script>
+</body>
+</html>

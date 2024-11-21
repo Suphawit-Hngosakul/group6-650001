@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="th">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>แบบฟอร์มคำร้อง</title>
+    <link rel="stylesheet" href="../../css/style.css">
+    <link rel="stylesheet" href="../../css/form.css">
+</head>
+
+<body>
+    <nav class="navbar">
+        <div class="user-info" onclick="toggleDropdown()">
+            <div class="user-details">
+                <span id="user-name">ชื่อผู้ใช้</span>
+                <span id="user-ID">6609650000</span>
+            </div>
+            <img src="../../img/user-image.png" alt="User Image" class="user-image">
+
+            <!-- Dropdown content -->
+            <div id="dropdown-content" class="dropdown-content">
+                <a href="#" id="user-email">user@example.com</a>
+                <a href="#" onclick="logout()">Logout</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Sidebar -->
+    <div class="menu-sidebar">
+        <a href="../../home.html">ย้อนกลับ</a>
+    </div>
+
+<!-- Main Form Content -->
+<main class="infromation">
+    <h2 class="form-title">แบบฟอร์มคำร้องการจดทะเบียนเพิ่ม-ถอนล่าช้า</h2>
+    <h2 class="h10">มหาวิทยาลัยธรรมศาสตร์</h2>
+    <hr>
+    <form id="requestForm" action="#" method="post">
+        <!-- Formtype -->
+        <input type="hidden" name="formType" value="แบบฟอร์มคำร้องการจดทะเบียนเพิ่ม-ถอนล่าช้า">
+
+        <!-- วันที่ -->
+        <div class="form-row">
+            <label for="date" class="date-label">วันที่</label>
+            <input type="date" id="date" name="date" required class="date-input">
+        </div>
+
+        <!-- ส่วนผู้รับ -->
+        <div class="form-row1">
+            <label for="dean-name" class="dean-label">เรียน ท่านคณบดี</label>
+            <input type="text" id="dean-name" name="dean-name" required class="dean-input">
+            <span>(ผ่านอาจารย์ที่ปรึกษา)</span>
+        </div>
+
+        <!-- ข้อมูลนักศึกษา -->
+        <div class="form-row2">
+            <label for="self-name" class="self-name-label">ข้าพเจ้า</label>
+            <input type="text" id="self-name" name="self-name" required class="self-name-input"
+                placeholder="ชื่อ นามสกุล">
+            <label for="student-id" class="student-id-label">เลขทะเบียน</label>
+            <input type="text" id="student-id" name="student-id" required class="student-id-input"
+                placeholder="รหัสนักศึกษา">
+        </div>
+
+        <!-- คณะและชั้นปี -->
+        <div class="form-row3">
+            <label for="faculty" class="faculty-label">คณะ</label>
+            <input type="text" id="faculty" name="faculty" class="faculty-input" placeholder="กรอกชื่อคณะ">
+            <label for="year" class="self-year-label">ชั้นปีที่</label>
+            <input type="number" min="1" max="4" class="self-year-input" placeholder = "1">
+        </div>
+
+        <!-- ช่องทางการติดต่อ -->
+        <div class="form-row9">
+            <label for="contact-address" class="contact-address-label">ที่อยู่ที่ติดต่อ</label>
+            <input type="text" class="contact-input" placeholder = "กรอกที่อยู่">
+        </div>
+
+        <div class="form-row10">
+            <span>โทรศัพท์มือถือ:</span>
+            <input type="tel" class="phone-input" placeholder="เบอร์โทรศัพท์">
+            <label id="emailLabel" for="email">E-mail:</label>
+            <input type="email" class="email-input" placeholder="example@example.com">
+        </div>
+
+        <!-- ตัวเลือกคำร้อง -->
+        <div class="request-section">
+            <div class="request-section-title">มีความประสงค์จะ</div>
+            <div class="request-options">
+                <label><input type="checkbox" class="single-check" name="request" value="จดทะเบียนเรียนล่าช้าเป็นกรณีพิเศษ">
+                    จดทะเบียนเรียนล่าช้าเป็นกรณีพิเศษ</label>
+                <label><input type="checkbox" class="single-check" name="request" value="จดทะเบียนเพิ่มล่าช้าเป็นกรณีพิเศษ">
+                    จดทะเบียนเพิ่มล่าช้าเป็นกรณีพิเศษ</label>
+                <label><input type="checkbox" class="single-check" name="request" value="จดทะเบียนถอนล่าช้าเป็นกรณีพิเศษ">
+                    จดทะเบียนถอนล่าช้าเป็นกรณีพิเศษ</label>
+                <label><input type="checkbox" class="single-check" name="request" value="drop"> จดทะเบียนเพิก-ถอน
+                    (Drop W)
+                    ล่าช้าเป็นกรณีพิเศษ</label>
+                <label>
+                    <input type="checkbox" class="single-check" name="request" value="exceed">
+                    จดทะเบียนเกินกว่าข้อบังคับ จำนวน
+                    <input type="number" style="width: 50px;" min="1"> วิชา
+                    <input type="number" style="width: 50px;" min="0"> หน่วยกิต
+                </label>
+                <label>
+                    <input type="checkbox" class="single-check" name="request" value="under">
+                    จดทะเบียนต่ำกว่าข้อบังคับ จำนวน
+                    <input type="number" style="width: 50px;" min="1"> วิชา
+                    <input type="number" style="width: 50px;" min="0"> หน่วยกิต
+                </label>
+            </div>
+        </div>
+
+        <!-- รายการวิชา -->
+        <div class="form-row4">
+            <label for="subject">รหัสวิชา / ชื่อวิชา / Section / (วัน/เวลา) / หน่วยกิต / ชื่อผู้สอน /
+                ลายเซ็นผู้สอน</label>
+            <textarea id="subject" rows="4" placeholder="กรอกข้อมูลวิชา..."></textarea>
+        </div>
+
+        <!-- ชี้แจงเหตุผลเพิ่มเติม -->
+        <div class="form-row4">
+            <label for="reason">ชี้แจงเหตุผลเพิ่มเติม</label>
+            <textarea id="reason" rows="4" placeholder="กรอกเหตุผล..."></textarea>
+        </div>
+
+        <!-- ลายเซ็น -->
+        <div class="form-row11">
+            <span>ขอแสดงความนับถือ</span>
+        </div>
+        <div class="form-row12">
+            <label for="contact-address" class="contact-address-label"></label>
+            <input type="text" class="signature-input" placeholder="ลงชื่อ">
+        </div>
+
+        <!-- ปุ่มส่งและรีเซ็ต -->
+        <div class="form-row-submit">
+            <button type="submit" class="submit-btn">Submit</button>
+            <button type="reset" class="reset-btn">ล้างฟอร์ม</button>
+        </div>
+    </form>
+</main>
+
+    <script src="../../js/menu.js"></script>
+    <script src="../../js/form.js"></script>
+
+    
+</body>
+</html>

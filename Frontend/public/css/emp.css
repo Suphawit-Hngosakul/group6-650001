@@ -1,0 +1,52 @@
+.request-list, .request-details {
+    margin-bottom: 2rem;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 1rem;
+}
+
+table th, table td {
+    border: 1px solid #252f3f;
+    padding: 15px;
+    text-align: left;
+}
+
+table th {
+    color: white;
+    background-color: #41526b;
+}
+
+.buttons-container {
+    margin-top: 20px;
+}
+
+button {
+    padding: 10px 20px;
+    margin: 10px;
+    cursor: pointer;
+    font-size: 16px;
+    border: none;
+    border-radius: 5px;
+}
+
+button#approve-btn {
+    background-color: #27ae60;
+    color: white;
+}
+
+button#need-more-info-btn {
+    background-color: #f39c12;
+    color: white;
+}
+
+button#reject-btn {
+    background-color: #e74c3c;
+    color: white;
+}
+
+button:hover {
+    opacity: 0.8;
+}

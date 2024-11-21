@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ระบบยื่นคำร้อง</title>
+    <link rel="stylesheet" href="../../css/style.css">
+    <link rel="stylesheet" href="../../css/status.css">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="user-info" onclick="toggleDropdown()">
+            <div class="user-details">
+                <span id="user-name">ชื่อผู้ใช้</span>
+                <span id="user-ID">6609650000</span>
+            </div>
+            <img src="../../img/user-image.png" alt="User Image" class="user-image">
+            
+            <!-- Dropdown content -->
+            <div id="dropdown-content" class="dropdown-content">
+                <a href="#" id="user-email">user@example.com</a>
+                <a href="#" onclick="logout()">Logout</a>
+            </div>
+        </div>
+    </nav>
+    <!-- Sidebar -->
+    <div class="menu-sidebar">
+        <a href="../../home.html">ยื่นคำร้อง</a>
+        <a href="../../followRequest.html">ติดตามผลคำร้อง</a>
+        <a href="../../historyRequest.html">ประวัติคำร้อง</a>
+        <a href="../../followRequest.html">ย้อนกลับ</a>
+    </div>
+
+    <main class="follow_request">
+        <h1 class="h-follow">ติดตามผลคำร้อง</h1>
+        <hr>
+        <div class="tracking-timeline">
+            <div class="tracking-step grey" id="step-submitted">
+                <div class="circle"></div>
+                <span class="status-text grey">ส่งคำร้องสำเร็จ</span>
+                <div class="line"></div>
+            </div>
+            <div class="tracking-step grey" id="step-pending">
+                <div class="circle"></div>
+                <span class="status-text grey">รอดำเนินการ</span>
+                <div class="line"></div>
+            </div>
+            <div class="tracking-step grey" id="step-rejected">
+                <div class="circle"></div>
+                <span class="status-text grey">คำร้องถูกปฏิเสธ</span>
+                <div class="line"></div>
+            </div>
+            <div class="tracking-step grey" id="step-approved">
+                <div class="circle"></div>
+                <span class="status-text grey">ได้รับการอนุมัติ</span>
+            </div>
+            <div id="rejection-details" class="hidden">
+                <h3>รายละเอียดเพิ่มเติม:</h3>
+                <p id="rejection-reason"></p>
+            </div>
+            
+        </div>
+    </main>
+    
+    <script src="../../js/menu.js"></script>
+    <script src="../../js/status.js"></script>
+</body>
+
+
+</html>
+    

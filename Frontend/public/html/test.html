@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>คำร้องนักศึกษา</title>
+</head>
+<style>/* style.css */
+    body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+    }
+    
+    .navbar {
+        background-color: #4CAF50;
+        color: white;
+        padding: 1rem;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+    
+    .navbar ul {
+        list-style: none;
+        display: flex;
+        gap: 1rem;
+    }
+    
+    .navbar a {
+        text-decoration: none;
+        color: white;
+    }
+    
+    main {
+        padding: 2rem;
+    }
+    
+    .request-list, .request-details {
+        margin-bottom: 2rem;
+    }
+    
+    .request-list h2, .request-details h2 {
+        margin-bottom: 1rem;
+    }
+    
+    .filter-bar {
+        display: flex;
+        gap: 1rem;
+        margin-bottom: 1rem;
+    }
+    
+    table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-top: 1rem;
+    }
+    
+    table th, table td {
+        border: 1px solid #ddd;
+        padding: 8px;
+        text-align: left;
+    }
+    
+    table th {
+        background-color: #f4f4f4;
+    }
+    
+    .hidden {
+        display: none;
+    }
+    
+    .btn {
+        padding: 0.5rem 1rem;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+    }
+    
+    .btn.approve {
+        background-color: #4CAF50;
+        color: white;
+    }
+    
+    .btn.reject {
+        background-color: #f44336;
+        color: white;
+    }
+</style>
+<body>
+    <header class="navbar">
+        <h1>ระบบจัดการคำร้องนักศึกษา</h1>
+        <nav>
+            <ul>
+                <li><a href="#">Dashboard</a></li>
+                <li><a href="#">คำร้องทั้งหมด</a></li>
+                <li><a href="#">ค้นหาคำร้อง</a></li>
+                <li><a href="#">ตั้งค่า</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section class="request-list">
+            <h2>รายการคำร้อง</h2>
+            <div class="filter-bar">
+                <input type="text" id="search" placeholder="ค้นหาด้วยชื่อ/รหัสนักศึกษา">
+                <select id="status-filter">
+                    <option value="all">สถานะทั้งหมด</option>
+                    <option value="pending">รอดำเนินการ</option>
+                    <option value="approved">อนุมัติ</option>
+                    <option value="rejected">ปฏิเสธ</option>
+                </select>
+            </div>
+            <table>
+                <thead>
+                    <tr>
+                        <th>หมายเลขคำร้อง</th>
+                        <th>ชื่อนักศึกษา</th>
+                        <th>วันที่ส่งคำร้อง</th>
+                        <th>สถานะ</th>
+                        <th>ดำเนินการ</th>
+                    </tr>
+                </thead>
+                <tbody id="request-table-body">
+                    <!-- ตารางจะถูกเติมข้อมูลจาก JavaScript -->
+                </tbody>
+            </table>
+        </section>
+
+        <section id="request-details" class="request-details hidden">
+            <h2>รายละเอียดคำร้อง</h2>
+            <div id="details-content">
+                <!-- รายละเอียดคำร้องจะถูกแสดงที่นี่ -->
+            </div>
+            <div class="actions">
+                <button id="approve-btn" class="btn approve">อนุมัติ</button>
+                <button id="reject-btn" class="btn reject">ปฏิเสธ</button>
+            </div>
+        </section>
+    </main>
+</body>
+<script>
+    // script.js
+
+    // Mock Data
+    const requests = [
+        { id: "12345", studentName: "กิตติพงษ์ ศรีสมุทร", date: "2024-11-18", status: "pending" },
+        { id: "12346", studentName: "สรัญญา ทองดี", date: "2024-11-17", status: "approved" },
+        { id: "12347", studentName: "จิรภัทร วงศ์วาน", date: "2024-11-16", status: "rejected" }
+    ];
+    
+    // Load Requests into Table
+    function loadRequests() {
+        const tbody = document.getElementById("request-table-body");
+        tbody.innerHTML = ""; // Clear existing rows
+    
+        requests.forEach(request => {
+            const row = document.createElement("tr");
+            row.innerHTML = `
+                <td>${request.id}</td>
+                <td>${request.studentName}</td>
+                <td>${request.date}</td>
+                <td>${getStatusBadge(request.status)}</td>
+                <td><button onclick="viewDetails('${request.id}')">ดู</button></td>
+            `;
+            tbody.appendChild(row);
+        });
+    }
+    
+    // View Request Details
+    function viewDetails(id) {
+        const request = requests.find(req => req.id === id);
+        if (!request) return alert("ไม่พบคำร้อง");
+    
+        const details = document.getElementById("details-content");
+        details.innerHTML = `
+            <p><strong>หมายเลขคำร้อง:</strong> ${request.id}</p>
+            <p><strong>ชื่อนักศึกษา:</strong> ${request.studentName}</p>
+            <p><strong>วันที่ส่ง:</strong> ${request.date}</p>
+            <p><strong>สถานะ:</strong> ${request.status}</p>
+        `;
+    
+        document.getElementById("request-details").classList.remove("hidden");
+    }
+    
+    // Get Status Badge
+    function getStatusBadge(status) {
+        const statusColors = {
+            pending: "orange",
+            approved: "green",
+            rejected: "red"
+        };
+        return `<span style="color: ${statusColors[status]}">${status}</span>`;
+    }
+    
+    // Initial Load
+    document.addEventListener("DOMContentLoaded", loadRequests);
+</script>
+</html>

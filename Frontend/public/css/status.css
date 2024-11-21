@@ -194,3 +194,28 @@
     font-size: 16px;
     color: #333;
 }
+
+.tracking-step.green .circle {
+    background-color: #4caf50; /* สีเขียว */
+}
+.tracking-step.green .status-text {
+    color: #4caf50; /* สีเขียว */
+}
+.tracking-step.red .circle {
+    background-color: #f44336; /* สีแดง */
+}
+.tracking-step.red .status-text {
+    color: #f44336; /* สีแดง */
+}
+.tracking-step.orange .circle {
+    background-color: #ff9800; /* สีส้ม */
+}
+.tracking-step.orange .status-text {
+    color: #ff9800; /* สีส้ม */
+}
+.tracking-step.red .circle {
+    background-color: #f44336; /* สีแดง */
+}
+.hidden {
+    display: none;
+}

@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ระบบยื่นคำร้อง</title>
+    <link href="https://fonts.googleapis.com/css2?family=Prompt:wght@400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../../css/style.css">
+    <link rel="stylesheet" href="../../css/emp.css">
+
+</head>
+<body>
+    <nav class="navbar">
+        <div class="user-info" onclick="toggleDropdown()">
+            <div class="user-details">
+                <span id="user-name">ชื่อผู้ใช้</span>
+                <span id="user-ID" hidden>6609650000</span>
+            </div>
+            <img src="../../img/user-image.png" alt="User Image" class="user-image">
+            
+            <!-- Dropdown content -->
+            <div id="dropdown-content" class="dropdown-content">
+                <a href="#" id="user-email">user@example.com</a>
+                <a href="#" onclick="logout()">Logout</a>
+            </div>
+        </div>
+    </nav>
+    <!-- Sidebar -->
+    <div class="menu-sidebar">
+        <a href="emphome.html">คำร้องนักศึกษา</a>
+    </div>
+
+    <main class="follow_request">
+        <h1 class="h-follow">รายการคำร้องนักศึกษา</h1>
+        <hr>
+        <section class="request-list">
+            <table>
+                <thead>
+                    <tr>
+                        <th style="width:10%">หมายเลขคำร้อง</th>
+                        <th style="width:20%">ประเภทคำร้อง</th>
+                        <th style="width:15%">รหัสนักศึกษา</th>
+                        <th style="width:20%">ชื่อนักศึกษา</th>
+                        <th>วันที่ส่งคำร้อง</th>
+                        <th>สถานะ</th>
+                        <th>ดำเนินการ</th>
+                    </tr>
+                </thead>
+                <tbody id="request-table-body">
+                    <!-- ตารางจะถูกเติมข้อมูลจาก JavaScript -->
+                </tbody>
+            </table>
+        </section>
+    </main>
+    <a href="../followReq/followForm.html"></a>
+    
+    <script src="../../js/menu.js"></script>
+    <script src="../../js/empgetdata.js"></script>
+</body>
+
+
+</html>
+<!-- <script>
+    // script.js
+
+    // Mock Data
+    const requests = [
+        { id: "12345", studentName: "กิตติพงษ์ ศรีสมุทร", date: "2024-11-18", status: "pending" },
+        { id: "12346", studentName: "สรัญญา ทองดี", date: "2024-11-17", status: "approved" },
+        { id: "12347", studentName: "จิรภัทร วงศ์วาน", date: "2024-11-16", status: "rejected" }
+    ];
+    
+    // Load Requests into Table
+    function loadRequests() {
+        const tbody = document.getElementById("request-table-body");
+        tbody.innerHTML = ""; // Clear existing rows
+    
+        requests.forEach(request => {
+            const row = document.createElement("tr");
+            row.innerHTML = `
+                <td>${request.id}</td>
+                <td>${request.studentName}</td>
+                <td>${request.studentName}</td>
+                <td>${request.studentName}</td>
+                <td>${request.date}</td>
+                <td>${getStatusBadge(request.status)}</td>
+                <td><button onclick="viewDetails('${request.id}')">ดู</button></td>
+            `;
+            tbody.appendChild(row);
+        });
+    }
+    
+    // View Request Details
+    function viewDetails(id) {
+        const request = requests.find(req => req.id === id);
+        if (!request) return alert("ไม่พบคำร้อง");
+    
+        const details = document.getElementById("details-content");
+        details.innerHTML = `
+            <p><strong>หมายเลขคำร้อง:</strong> ${request.id}</p>
+            <p><strong>ชื่อนักศึกษา:</strong> ${request.studentName}</p>
+            <p><strong>วันที่ส่ง:</strong> ${request.date}</p>
+            <p><strong>สถานะ:</strong> ${request.status}</p>
+        `;
+    
+        document.getElementById("request-details").classList.remove("hidden");
+    }
+    
+    // Get Status Badge
+    function getStatusBadge(status) {
+        const statusColors = {
+            pending: "orange",
+            approved: "green",
+            rejected: "red"
+        };
+        return `<span style="color: ${statusColors[status]}">${status}</span>`;
+    }
+    
+    // Initial Load
+    document.addEventListener("DOMContentLoaded", loadRequests);
+</script> -->

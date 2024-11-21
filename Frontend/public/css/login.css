@@ -54,45 +54,6 @@ input, select {
     border-radius: 4px;
 }
 
-button {
-    width: 100%;
-    padding: 12px;
-    border-radius: 5px;
-    margin-top: 20px;
-    background: linear-gradient(45deg, #ff7f50, #ff6347);
-    border: none;
-    color: #fff;
-    cursor: pointer;
-    position: relative;
-    overflow: hidden;
-    transition: background 0.3s ease;
-}
-
-button:hover {
-    background: linear-gradient(45deg, #ff6347, #ff7f50);
-}
-
-button::before {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: -75%;
-    width: 50%;
-    height: 100%;
-    background: rgba(255, 255, 255, 0.4);
-    transform: skewX(-25deg);
-    transition: left 0.75s ease-in-out;
-}
-
-button:hover::before {
-    left: 125%;
-}
-
-button:focus {
-    outline: none;
-    box-shadow: 0 0 10px 2px rgba(255, 99, 71, 0.5);
-}
-
 #message {
     margin-top: 20px;
     font-weight: 600;
@@ -138,5 +99,56 @@ button:focus {
     display: block;
     margin: 0 auto; /* จัดให้อยู่กึ่งกลาง */
 }
+/* ปุ่มสถานะเปิด */
+button {
+    width: 100%;
+    padding: 12px;
+    border-radius: 5px;
+    margin-top: 20px;
+    background: linear-gradient(45deg, #ff7f50, #ff6347); /* สีส้มแสดงสถานะเปิด */
+    border: none;
+    color: #fff;
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+    transition: background 0.3s ease, opacity 0.3s ease;
+}
 
+button:hover:not(:disabled) {
+    background: linear-gradient(45deg, #ff6347, #ff7f50);
+}
 
+/* เอฟเฟกต์แสงที่เคลื่อนที่เมื่อ hover */
+button::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: -75%;
+    width: 50%;
+    height: 100%;
+    background: rgba(255, 255, 255, 0.4);
+    transform: skewX(-25deg);
+    transition: left 0.75s ease-in-out;
+}
+
+button:hover:not(:disabled)::before {
+    left: 125%;
+}
+
+/* แสดงโฟกัส */
+button:focus {
+    outline: none;
+    box-shadow: 0 0 10px 2px rgba(255, 99, 71, 0.5);
+}
+
+/* ปุ่มสถานะปิด (default) */
+button:disabled {
+    background: linear-gradient(45deg, #d3d3d3, #a9a9a9); /* สีเทาเพื่อแสดงสถานะปิด */
+    color: rgba(255, 255, 255, 0.7); /* สีตัวอักษรจางลง */
+    cursor: not-allowed;
+    opacity: 0.6; /* ลดความชัดเจน */
+}
+
+button:disabled:hover::before {
+    display: none; /* ปิดเอฟเฟกต์แสงเมื่อปุ่มปิด */
+}
