@@ -10,6 +10,7 @@ public class Request {
     private long id;
 
     //InforStudent
+    @Column(name = "student_name")
     private String studentName;
     private String studentId;
     private String faculty;

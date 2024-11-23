@@ -14,6 +14,7 @@ document.addEventListener("DOMContentLoaded", function () {
     const reasonInput = document.getElementById("reason"); // Additional reason input
     const checkboxes = document.querySelectorAll(".single-check");
     const submitButton = document.querySelector(".submit-btn");
+    const signature = document.querySelector(".signature-input");
 
     // Add event listeners for real-time validation (other inputs)
     deanInput.addEventListener("input", () => validateRequiredField(deanInput, "กรุณากรอกชื่อคณบดี"));
@@ -45,6 +46,13 @@ document.addEventListener("DOMContentLoaded", function () {
     submitButton.addEventListener("click", function (event) {
         event.preventDefault(); // Prevent default form submission
 
+        let requests = "";
+        checkboxes.forEach((checkbox) => {
+            if (checkbox.checked) {
+                requests = checkbox.value;
+            }
+        });
+
         // Run all validation checks
         const allValid = validateForm();
 
@@ -61,9 +69,10 @@ document.addEventListener("DOMContentLoaded", function () {
                 contactAddress: addressInput.value,
                 phone: phoneInput.value,
                 email: emailInput.value,
-                requests: reasonInput.value,
+                requests, 
                 subjectDetails: subjectInput.value,
-                reason: reasonInput.value
+                reason: reasonInput.value,
+                signature:signature.value
             };
             fetch('http://localhost:8080/api/requests/create', {
                 method: 'POST',
