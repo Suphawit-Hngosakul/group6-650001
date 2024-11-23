@@ -604,57 +604,22 @@ label {
     opacity: 0.9;
 }
 
-      /* body upload */
-    .upload-container body {
-        font-family: 'Arial', sans-serif;
-        background-color: #f4f4f9;
-        margin: 0;
-        padding: 0;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        height: 100vh;
-    }
+.form-row-upload {
+    margin-bottom: 20px;
+}
 
-    .upload-container h1 {
-        font-size: 16px;
-        text-align: center;
-        margin-bottom: 20px;
-        color: #636363;
-    }
+.file-upload-label {
+    display: block;
+    margin-bottom: 5px;
+}
 
-    /* กล่องอัปโหลด */
-    .upload-container {
-        text-align: center;
-        background-color: #fff;
-        padding: 30px 40px;
-        border-radius: 10px;
-        box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
-    }
+input[type="file"] {
+    font-size: 14px;
+    padding: 5px;
+    margin-bottom: 10px;
+}
 
-    /* ปุ่มเลือกไฟล์ */
-    input[type="file"] {
-        display: none;
-    }
-
-    .upload-container label {
-        display: inline-block;
-        padding: 10px 20px;
-        background-color: #5cb85c;
-        color: white;
-        border-radius: 5px;
-        cursor: pointer;
-        font-size: 16px;
-        transition: background-color 0.3s ease;
-    }
-
-    label:hover {
-        background-color: #cecece;
-    }
-    
-    /* ข้อความ */
-    .file-name {
-        margin-top: 10px;
-        font-size: 12px;
-        color: #555;
-    }
+small {
+    color: gray;
+    font-size: 12px;
+}

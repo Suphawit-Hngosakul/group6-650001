@@ -118,20 +118,17 @@
             <textarea id="subject" rows="4" placeholder="กรอกข้อมูลวิชา..."></textarea>
         </div>
 
-        <!-- upload -->
-        <div class="upload-container">
-            <h1>Upload Your File</h1>
-            <form method="POST" action="/upload" enctype="multipart/form-data">
-                <label for="file">Choose File</label>
-                <input type="file" id="file" name="file" onchange="showFileName()" required>
-                <p class="file-name" id="file-name">No file chosen</p>
-            </form>
-        </div>
-
         <!-- ชี้แจงเหตุผลเพิ่มเติม -->
         <div class="form-row4">
             <label for="reason">ชี้แจงเหตุผลเพิ่มเติม</label>
             <textarea id="reason" rows="4" placeholder="กรอกเหตุผล..."></textarea>
+        </div>
+
+        <!-- ส่วนอัปโหลดไฟล์ -->
+        <div class="form-row-upload">
+            <label for="file-upload" class="file-upload-label">อัปโหลดไฟล์แนบ (ถ้ามี)</label>
+            <input type="file" id="file-upload" name="file" accept=".pdf,.jpg,.jpeg,.png,.doc,.docx">
+            <small>ไฟล์ที่รองรับ: .pdf, .jpg, .jpeg, .png, .doc, .docx</small>
         </div>
 
         <!-- ลายเซ็น -->
