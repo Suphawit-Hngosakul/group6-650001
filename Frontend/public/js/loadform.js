@@ -59,7 +59,7 @@ document.addEventListener("DOMContentLoaded", async function () {
                             
                             <div class="form-row9">
                                 <label for="contact-address" class="contact-address-label">ที่อยู่ที่ติดต่อ</label>
-                                <input type="text" id="contact-address" value="${data.address}" readonly class="contact-input">
+                                <input type="text" id="contact-address" value="${data.contactAddress}" readonly class="contact-input">
                             </div>
                             
                             <div class="form-row10">
@@ -73,14 +73,14 @@ document.addEventListener("DOMContentLoaded", async function () {
                                 <div class="request-section-title">มีความประสงค์จะ</div>
                                 <div class="request-options">
                                             <label>
-                                                <input type="checkbox" checked disabled> 
+                                                <input type="checkbox" checked disabled readonly>${data.requests} 
                                             </label>
                                 </div>
                             </div>
                             
                             <div class="form-row4">
                                 <label for="subject">รหัสวิชา / ชื่อวิชา / Section / (วัน/เวลา) / หน่วยกิต / ชื่อผู้สอน / ลายเซ็นผู้สอน</label>
-                                <textarea id="subject" rows="4" readonly>${data.subject}</textarea>
+                                <textarea id="subject" rows="4" readonly>${data.subjectDetails}</textarea>
                             </div>
                             
                             <div class="form-row4">
@@ -93,7 +93,7 @@ document.addEventListener("DOMContentLoaded", async function () {
                             </div>
                             
                             <div class="form-row12">
-                                <input type="text" class="signature-input" value="${data.studentName}" readonly placeholder="ลงชื่อ">
+                                <input type="text" class="signature-input" value="${data.signature}" readonly placeholder="ลงชื่อ">
                             </div>
                         </form>
                     </main>
