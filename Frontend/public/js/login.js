@@ -46,7 +46,9 @@ function submitLogin() {
             username: data.displayname_en,
             studentID: data.username,
             email: data.email,
-            role: data.type
+            role: data.type,
+            thainame: data.displayname_th,
+            faculty: data.faculty
         };
 
         localStorage.setItem('user', JSON.stringify(userInfo));

@@ -1,4 +1,10 @@
 document.addEventListener("DOMContentLoaded", function () {
+    const user = JSON.parse(localStorage.getItem('user'));
+    document.getElementById("self-name").value = user.thainame;
+    document.getElementById("student-id").value = user.studentID;
+    document.getElementById("faculty").value = user.faculty;
+    document.querySelector(".email-input").value = user.email;
+    
     const form = document.getElementById("requestForm");
     const formTypeInput = document.querySelector("input[name='formType']");
     const dateInput = document.getElementById("date");
@@ -237,8 +243,8 @@ document.addEventListener("DOMContentLoaded", function () {
 
     function validateYear(input) {
         const errorId = "year-error";
-        if (!input.value || isNaN(input.value) || input.value < 1 || input.value > 4) {
-            showError(input, "กรุณากรอกชั้นปีที่ถูกต้อง (1-4)", errorId);
+        if (!input.value || isNaN(input.value) || input.value < 1 || input.value > 6) {
+            showError(input, "กรุณากรอกชั้นปีที่ถูกต้อง (1-6)", errorId);
         } else {
             clearError(errorId);
         }
