@@ -59,7 +59,7 @@ document.addEventListener("DOMContentLoaded", async function () {
                             
                             <div class="form-row9">
                                 <label for="contact-address" class="contact-address-label">ที่อยู่ที่ติดต่อ</label>
-                                <input type="text" id="contact-address" value="${data.address}" readonly class="contact-input">
+                                <input type="text" id="contact-address" value="${data.contactAddress}" readonly class="contact-input">
                             </div>
                             
                             <div class="form-row10">
@@ -73,14 +73,14 @@ document.addEventListener("DOMContentLoaded", async function () {
                                 <div class="request-section-title">มีความประสงค์จะ</div>
                                 <div class="request-options">
                                             <label>
-                                                <input type="checkbox" checked disabled> 
+                                                <input type="checkbox" checked disabled readonly>${data.requests} 
                                             </label>
                                 </div>
                             </div>
                             
                             <div class="form-row4">
                                 <label for="subject">รหัสวิชา / ชื่อวิชา / Section / (วัน/เวลา) / หน่วยกิต / ชื่อผู้สอน / ลายเซ็นผู้สอน</label>
-                                <textarea id="subject" rows="4" readonly>${data.subject}</textarea>
+                                <textarea id="subject" rows="4" readonly>${data.subjectDetails}</textarea>
                             </div>
                             
                             <div class="form-row4">
@@ -93,8 +93,10 @@ document.addEventListener("DOMContentLoaded", async function () {
                             </div>
                             
                             <div class="form-row12">
-                                <input type="text" class="signature-input" value="${data.studentName}" readonly placeholder="ลงชื่อ">
+                                <input type="text" class="signature-input" value="${data.signature}" readonly placeholder="ลงชื่อ">
                             </div>
+                             <!-- ปุ่มสำหรับดาวน์โหลดไฟล์แนบ -->
+                            ${data.filePath ? `<button type="button" id="download-btn" onclick="downloadFile(${requestId})">ดาวน์โหลดไฟล์แนบ</button>` : ''}
                         </form>
                     </main>
             `;
@@ -110,3 +112,50 @@ document.addEventListener("DOMContentLoaded", async function () {
         document.getElementById("request-details").innerHTML = "<p>ไม่พบรหัสคำร้องใน URL</p>";
     }
 });
+
+function downloadFile(requestId) {
+    fetch(`http://localhost:8080/api/requests/download/${requestId}`, {
+        method: 'GET'
+    })
+    .then(response => {
+        if (!response.ok) {
+            throw new Error('Network response was not ok');
+        }
+
+        // ดึง header Content-Disposition เพื่อรับชื่อไฟล์ที่แท้จริง
+        const contentDisposition = response.headers.get('Content-Disposition');
+        console.log("Content-Disposition Header:", contentDisposition); // Debug เพื่อตรวจสอบค่า header
+
+        let fileName = 'เอกสารเพิ่มเติมสำหรับคำร้อง.pdf'; // ตั้งค่าเริ่มต้นหากไม่พบชื่อใน header
+
+        // ตรวจสอบ header และดึงชื่อไฟล์
+        if (contentDisposition && contentDisposition.includes('filename=')) {
+            // แยกและจัดการเพื่อรับชื่อไฟล์ที่แท้จริง
+            const matches = contentDisposition.match(/filename\*=UTF-8''([^;]+)|filename="?([^"]+)"?/);
+            if (matches) {
+                if (matches[1]) {
+                    fileName = decodeURIComponent(matches[1]); // ถอดรหัส UTF-8 เพื่อรองรับชื่อภาษาไทย
+                } else if (matches[2]) {
+                    fileName = matches[2];
+                }
+            }
+        }
+
+        // รับข้อมูลเป็น blob
+        return response.blob().then(blob => ({ blob, fileName }));
+    })
+    .then(({ blob, fileName }) => {
+        // สร้าง URL สำหรับดาวน์โหลดและกำหนดชื่อไฟล์
+        const url = window.URL.createObjectURL(blob);
+        const a = document.createElement('a');
+        a.style.display = 'none';
+        a.href = url;
+        a.download = fileName; // ใช้ชื่อไฟล์ที่ได้รับจาก header
+        document.body.appendChild(a);
+        a.click();
+        window.URL.revokeObjectURL(url);
+    })
+    .catch(error => {
+        console.error('There was an error with the download:', error);
+    });
+}

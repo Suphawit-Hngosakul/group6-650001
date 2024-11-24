@@ -1,4 +1,10 @@
 document.addEventListener("DOMContentLoaded", function () {
+    const user = JSON.parse(localStorage.getItem('user'));
+    document.getElementById("self-name").value = user.thainame;
+    document.getElementById("student-id").value = user.studentID;
+    document.getElementById("faculty").value = user.faculty;
+    document.querySelector(".email-input").value = user.email;
+    
     const form = document.getElementById("requestForm");
     const formTypeInput = document.querySelector("input[name='formType']");
     const dateInput = document.getElementById("date");
@@ -14,6 +20,7 @@ document.addEventListener("DOMContentLoaded", function () {
     const reasonInput = document.getElementById("reason"); // Additional reason input
     const checkboxes = document.querySelectorAll(".single-check");
     const submitButton = document.querySelector(".submit-btn");
+    const signature = document.querySelector(".signature-input");
 
     // Add event listeners for real-time validation (other inputs)
     deanInput.addEventListener("input", () => validateRequiredField(deanInput, "กรุณากรอกชื่อคณบดี"));
@@ -45,12 +52,19 @@ document.addEventListener("DOMContentLoaded", function () {
     submitButton.addEventListener("click", function (event) {
         event.preventDefault(); // Prevent default form submission
 
+        let requests = "";
+        checkboxes.forEach((checkbox) => {
+            if (checkbox.checked) {
+                requests = checkbox.value;
+            }
+        });
+
         // Run all validation checks
         const allValid = validateForm();
 
         if (allValid) {
             // Collect form data into an object
-            const formData = {
+            const requestData = {
                 formType: formTypeInput.value,
                 date: dateInput.value,
                 deanName: deanInput.value,
@@ -61,16 +75,29 @@ document.addEventListener("DOMContentLoaded", function () {
                 contactAddress: addressInput.value,
                 phone: phoneInput.value,
                 email: emailInput.value,
-                requests: reasonInput.value,
+                requests,
                 subjectDetails: subjectInput.value,
-                reason: reasonInput.value
+                reason: reasonInput.value,
+                signature: signature.value
             };
+
+            // แปลงข้อมูลฟอร์มเป็น JSON string
+            const requestJson = JSON.stringify(requestData);
+            console.log("Request JSON:", requestJson);
+            // สร้าง FormData สำหรับส่งข้อมูล
+            const formData = new FormData();
+            formData.append("request", requestJson);
+
+            // เพิ่มไฟล์ที่แนบ (ถ้ามี)
+            const fileInput = document.getElementById('file-upload');
+            if (fileInput.files.length > 0) {
+                formData.append("file", fileInput.files[0]);
+            }
+
+            // ส่งข้อมูลทั้งหมดไปยัง backend
             fetch('http://localhost:8080/api/requests/create', {
                 method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify(formData),
+                body: formData
             })
                 .then((response) => {
                     if (!response.ok) {
@@ -216,8 +243,8 @@ document.addEventListener("DOMContentLoaded", function () {
 
     function validateYear(input) {
         const errorId = "year-error";
-        if (!input.value || isNaN(input.value) || input.value < 1 || input.value > 4) {
-            showError(input, "กรุณากรอกชั้นปีที่ถูกต้อง (1-4)", errorId);
+        if (!input.value || isNaN(input.value) || input.value < 1 || input.value > 6) {
+            showError(input, "กรุณากรอกชั้นปีที่ถูกต้อง (1-6)", errorId);
         } else {
             clearError(errorId);
         }

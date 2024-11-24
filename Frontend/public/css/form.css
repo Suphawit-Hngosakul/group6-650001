@@ -603,3 +603,23 @@ label {
 .btn:hover {
     opacity: 0.9;
 }
+
+.form-row-upload {
+    margin-bottom: 20px;
+}
+
+.file-upload-label {
+    display: block;
+    margin-bottom: 5px;
+}
+
+input[type="file"] {
+    font-size: 14px;
+    padding: 5px;
+    margin-bottom: 10px;
+}
+
+small {
+    color: gray;
+    font-size: 12px;
+}

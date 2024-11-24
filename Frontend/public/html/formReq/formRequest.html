@@ -56,19 +56,19 @@
         <!-- ข้อมูลนักศึกษา -->
         <div class="form-row2">
             <label for="self-name" class="self-name-label">ข้าพเจ้า</label>
-            <input type="text" id="self-name" name="self-name" required class="self-name-input"
+            <input type="text" id="self-name" name="self-name" readonly class="self-name-input"
                 placeholder="ชื่อ นามสกุล">
             <label for="student-id" class="student-id-label">เลขทะเบียน</label>
-            <input type="text" id="student-id" name="student-id" required class="student-id-input"
+            <input type="text" id="student-id" name="student-id" readonly class="student-id-input"
                 placeholder="รหัสนักศึกษา">
         </div>
 
         <!-- คณะและชั้นปี -->
         <div class="form-row3">
             <label for="faculty" class="faculty-label">คณะ</label>
-            <input type="text" id="faculty" name="faculty" class="faculty-input" placeholder="กรอกชื่อคณะ">
+            <input type="text" id="faculty" name="faculty" readonly class="faculty-input" placeholder="กรอกชื่อคณะ">
             <label for="year" class="self-year-label">ชั้นปีที่</label>
-            <input type="number" min="1" max="4" class="self-year-input" placeholder = "1">
+            <input type="number" min="1" max="6" class="self-year-input" placeholder = "1">
         </div>
 
         <!-- ช่องทางการติดต่อ -->
@@ -81,7 +81,7 @@
             <span>โทรศัพท์มือถือ:</span>
             <input type="tel" class="phone-input" placeholder="เบอร์โทรศัพท์">
             <label id="emailLabel" for="email">E-mail:</label>
-            <input type="email" class="email-input" placeholder="example@example.com">
+            <input type="email" readonly class="email-input" placeholder="example@example.com">
         </div>
 
         <!-- ตัวเลือกคำร้อง -->
@@ -94,9 +94,8 @@
                     จดทะเบียนเพิ่มล่าช้าเป็นกรณีพิเศษ</label>
                 <label><input type="checkbox" class="single-check" name="request" value="จดทะเบียนถอนล่าช้าเป็นกรณีพิเศษ">
                     จดทะเบียนถอนล่าช้าเป็นกรณีพิเศษ</label>
-                <label><input type="checkbox" class="single-check" name="request" value="drop"> จดทะเบียนเพิก-ถอน
-                    (Drop W)
-                    ล่าช้าเป็นกรณีพิเศษ</label>
+                <label><input type="checkbox" class="single-check" name="request" value="จดทะเบียนเพิก-ถอน (Drop W) ล่าช้าเป็นกรณีพิเศษ"> 
+                    จดทะเบียนเพิก-ถอน (Drop W) ล่าช้าเป็นกรณีพิเศษ</label>
                 <label>
                     <input type="checkbox" class="single-check" name="request" value="exceed">
                     จดทะเบียนเกินกว่าข้อบังคับ จำนวน
@@ -123,6 +122,13 @@
         <div class="form-row4">
             <label for="reason">ชี้แจงเหตุผลเพิ่มเติม</label>
             <textarea id="reason" rows="4" placeholder="กรอกเหตุผล..."></textarea>
+        </div>
+
+        <!-- ส่วนอัปโหลดไฟล์ -->
+        <div class="form-row-upload">
+            <label for="file-upload" class="file-upload-label">อัปโหลดไฟล์แนบ (ถ้ามี)</label>
+            <input type="file" id="file-upload" name="file" accept=".pdf,.jpg,.jpeg,.png,.doc,.docx">
+            <small>ไฟล์ที่รองรับ: .pdf, .jpg, .jpeg, .png, .doc, .docx</small>
         </div>
 
         <!-- ลายเซ็น -->

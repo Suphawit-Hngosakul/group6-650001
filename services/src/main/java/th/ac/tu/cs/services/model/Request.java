@@ -10,6 +10,7 @@ public class Request {
     private long id;
 
     //InforStudent
+    @Column(name = "student_name")
     private String studentName;
     private String studentId;
     private String faculty;
@@ -27,6 +28,8 @@ public class Request {
     private String subjectDetails;
     private String reason;
     private String signature;
+    @Column(name = "file_path")
+    private String filePath;
 
     // Getter และ Setter
 
@@ -165,4 +168,13 @@ public class Request {
     public void setSignature(String signature) {
         this.signature = signature;
     }
+
+    public String getFilePath() {
+        return filePath;
+    }
+
+    public void setFilePath(String filePath) {
+        this.filePath = filePath;
+    }
 }
+
