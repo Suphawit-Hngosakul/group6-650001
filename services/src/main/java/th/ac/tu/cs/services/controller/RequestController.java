@@ -127,9 +127,6 @@ public class RequestController {
         }
     }
 
-
-
-
     @PutMapping("/{id}")
     public ResponseEntity<Request> updateRequestStatus(@PathVariable Long id, @RequestBody Map<String, Object> statusUpdateRequest) {
         try {

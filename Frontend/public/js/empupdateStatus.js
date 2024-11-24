@@ -1,7 +1,7 @@
 // ฟังก์ชันสำหรับการอัปเดตสถานะคำร้อง
 async function updateStatus(status) {
     const requestId = new URLSearchParams(window.location.search).get("id");
-    const details = status === "NEED_MORE_INFO" ? prompt("กรุณาระบุข้อมูลเพิ่มเติม:") : "";
+    const details = status === "ขอข้อมูลเพิ่มเติม" || status === "ปฏิเสธ" ? prompt("กรุณาระบุข้อมูลเพิ่มเติม:") : "";
 
     console.log("Sending update for Request ID:", requestId);
     console.log("New Status:", status);
