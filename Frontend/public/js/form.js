@@ -58,7 +58,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
         if (allValid) {
             // Collect form data into an object
-            const formData = {
+            const requestData = {
                 formType: formTypeInput.value,
                 date: dateInput.value,
                 deanName: deanInput.value,
@@ -69,17 +69,29 @@ document.addEventListener("DOMContentLoaded", function () {
                 contactAddress: addressInput.value,
                 phone: phoneInput.value,
                 email: emailInput.value,
-                requests, 
+                requests,
                 subjectDetails: subjectInput.value,
                 reason: reasonInput.value,
-                signature:signature.value
+                signature: signature.value
             };
+
+            // แปลงข้อมูลฟอร์มเป็น JSON string
+            const requestJson = JSON.stringify(requestData);
+            console.log("Request JSON:", requestJson);
+            // สร้าง FormData สำหรับส่งข้อมูล
+            const formData = new FormData();
+            formData.append("request", requestJson);
+
+            // เพิ่มไฟล์ที่แนบ (ถ้ามี)
+            const fileInput = document.getElementById('file-upload');
+            if (fileInput.files.length > 0) {
+                formData.append("file", fileInput.files[0]);
+            }
+
+            // ส่งข้อมูลทั้งหมดไปยัง backend
             fetch('http://localhost:8080/api/requests/create', {
                 method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify(formData),
+                body: formData
             })
                 .then((response) => {
                     if (!response.ok) {
