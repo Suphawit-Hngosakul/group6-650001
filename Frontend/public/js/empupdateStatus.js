@@ -1,7 +1,30 @@
 // ฟังก์ชันสำหรับการอัปเดตสถานะคำร้อง
 async function updateStatus(status) {
     const requestId = new URLSearchParams(window.location.search).get("id");
-    const details = status === "ขอข้อมูลเพิ่มเติม" || status === "ปฏิเสธ" ? prompt("กรุณาระบุข้อมูลเพิ่มเติม:") : "";
+    // const details = status === "ขอข้อมูลเพิ่มเติม" || status === "ปฏิเสธ" ? prompt("กรุณาระบุข้อมูลเพิ่มเติม:") : "";
+    if (status === "ขอข้อมูลเพิ่มเติม" || status === "ปฏิเสธ") {
+        const { value: text } = await Swal.fire({
+          input: "textarea",
+          inputLabel: "กรุณาระบุข้อมูลเพิ่มเติม",
+          inputPlaceholder: "กรอกข้อมูลเพิ่มเติมที่นี่...",
+          inputAttributes: {
+            "aria-label": "กรอกข้อมูลเพิ่มเติมที่นี่"
+          },
+          showCancelButton: true,
+          confirmButtonText: "ตกลง",
+          cancelButtonText: "ยกเลิก"
+        });
+      
+        if (text) {
+          details = text; // เก็บค่าที่ผู้ใช้กรอกไว้ในตัวแปร details
+          Swal.fire("ข้อมูลที่คุณระบุ:", details);
+        } else {
+          Swal.fire("ไม่มีข้อมูลถูกกรอก");
+        }
+      }
+      
+      console.log(details); // แสดงผลข้อมูลที่ถูกเก็บใน console
+
 
     console.log("Sending update for Request ID:", requestId);
     console.log("New Status:", status);
@@ -24,12 +47,22 @@ async function updateStatus(status) {
         }
 
         const result = await response.json();
-        alert(`สถานะคำร้องถูกเปลี่ยนเป็น: ${status}`);
+        Swal.fire({
+            title: "เสร็จสิ้น",
+            text: `สถานะคำร้องถูกเปลี่ยนเป็น: ${status}`,
+            icon: "success"
+          });
+        // alert(`สถานะคำร้องถูกเปลี่ยนเป็น: ${status}`);
         console.log("Response from API:", result);
 
     } catch (error) {
         console.error("Error updating status:", error);
-        alert("เกิดข้อผิดพลาดในการเปลี่ยนสถานะคำร้อง: " + error.message);
+        Swal.fire({
+            icon: "error",
+            title: "เกิดข้อผิดพลาด",
+            text: "เกิดข้อผิดพลาดในการเปลี่ยนสถานะคำร้อง: " + error.message,
+          });
+        // alert("เกิดข้อผิดพลาดในการเปลี่ยนสถานะคำร้อง: " + error.message);
     }
 }
 
