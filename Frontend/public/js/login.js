@@ -33,10 +33,20 @@ function submitLogin() {
     .then(data => {
         
         if (!data.type) {
+            Swal.fire({
+            icon: "error",
+            title: "Login ไม่สำเร็จ",
+            text: "The username or password is incorrect.",
+          });
             message.innerText = 'The username or password is incorrect.';
             return;
         }
         if (data.type !== role) {
+            Swal.fire({
+                icon: "error",
+                title: "Login ไม่สำเร็จ",
+                text: "The information is incorrect.",
+              });
             message.innerText = 'The information is incorrect.';
             return;
         }
@@ -55,16 +65,32 @@ function submitLogin() {
 
         document.getElementById('message').style.color = 'green';
         document.getElementById('message').innerText = data.message;
+        Swal.fire({
+            title: "Login สำเร็จ!",
+            text: "ยินดีต้อนรับเข้าสู้ระบบ",
+            icon: "success"
+          }).then((result) => {
+            if (result.isConfirmed) {
+                // ย้ายไปที่หน้าที่เหมาะสม
+                if (userInfo.role === 'student') {
+                    
+                    window.location.href = 'home.html';
+                } else if (userInfo.role === 'employee') {
+                    window.location.href = 'employeehome.html';
+                }
+                
+            }
+        });
 
-        // ย้ายไปที่หน้าที่เหมาะสม
-        if (userInfo.role === 'student') {
-            window.location.href = 'home.html';
-        } else if (userInfo.role === 'employee') {
-            window.location.href = 'employeehome.html';
-        }
+        
     })
     .catch(error => {
         message.innerText = 'Error: ' + error.message;
+        Swal.fire({
+            icon: "error",
+            title: "Login ไม่สำเร็จ",
+            text: "โปรดตรวจสอบ Username หรือ Password ของท่าน",
+          });
     });
 }
 
