@@ -623,3 +623,17 @@ small {
     color: gray;
     font-size: 12px;
 }
+
+.lecturer-input {
+    margin-left: 10px;
+    padding: 5px;
+    width: 446px;
+    font-size: 14px;
+}
+
+.reason-input {
+    margin-left: 10px;
+    padding: 5px;
+    width: 672px;
+    font-size: 14px;
+}
