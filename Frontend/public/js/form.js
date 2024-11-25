@@ -130,8 +130,9 @@ document.addEventListener("DOMContentLoaded", function () {
             } else {
                 console.error("ไม่พบปุ่มที่มี class 'notification-btn' ใน DOM");
             }
+
             // ใช้ SweetAlert แสดงผลเมื่อส่งสำเร็จ
-        Swal.fire({
+            Swal.fire({
             icon: 'success',
             title: 'ส่งฟอร์มสำเร็จ!',
             text: `ชื่อฟอร์ม: ${formTypeInput.value}\nเวลาที่ส่ง: ${new Date().toLocaleString()}`,
