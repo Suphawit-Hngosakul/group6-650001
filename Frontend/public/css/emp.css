@@ -33,16 +33,22 @@ button {
 }
 
 button#approve-btn {
+    width: 950px;
+    margin-left: 230px;
     background-color: #27ae60;
     color: white;
 }
 
 button#need-more-info-btn {
+    width: 950px;
+    margin-left: 230px;
     background-color: #f39c12;
     color: white;
 }
 
 button#reject-btn {
+    width: 950px;
+    margin-left: 230px;
     background-color: #e74c3c;
     color: white;
 }
