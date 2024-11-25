@@ -133,7 +133,7 @@ document.addEventListener("DOMContentLoaded", function () {
             }
 
             alert("ส่งสำเร็จ");
-            // form.reset();
+            form.reset();
         } else {
             alert("ส่งไม่สำเร็จ โปรดตรวจสอบข้อมูลและจุดประสงค์อีกครั้ง");
         }

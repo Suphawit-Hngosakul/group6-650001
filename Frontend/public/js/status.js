@@ -57,10 +57,12 @@ document.addEventListener("DOMContentLoaded", function () {
                 setStepActive('step-submitted', 'green');
                 setStepActive('step-pending', 'green');
                 break;
-            case 'REJECTED':
+            case 'ปฏิเสธ':
+                document.getElementById('step-approved').classList.add('hidden');
+                document.getElementById('step-rejected').classList.remove('hidden');
                 setStepActive('step-submitted', 'green');
                 setStepActive('step-pending', 'green');
-                setStepActive('step-rejected', 'orange');
+                setStepActive('step-rejected', 'red');
 
                 // แสดงรายละเอียดคำร้องถูกปฏิเสธ
                 const rejectionDetails = document.getElementById('rejection-details');
@@ -68,11 +70,20 @@ document.addEventListener("DOMContentLoaded", function () {
                     rejectionDetails.classList.remove('hidden');
                     document.getElementById('rejection-reason').textContent = details || "ไม่มีเหตุผลที่ระบุ";
                 }
-
-                // เปลี่ยนสี Approved เป็นแดง
-                setStepActive('step-approved', 'red');
                 break;
-            case 'APPROVED':
+            case 'ขอข้อมูลเพิ่มเติม':
+                document.getElementById('step-needmore').classList.remove('hidden');
+                setStepActive('step-submitted', 'green');
+                setStepActive('step-pending', 'green');
+                setStepActive('step-needmore', 'orange');
+                // แสดงรายละเอียดคำร้องถูกปฏิเสธ
+                const needmoreDetails = document.getElementById('rejection-details');
+                if (needmoreDetails) {
+                    needmoreDetails.classList.remove('hidden');
+                    document.getElementById('rejection-reason').textContent = details || "ไม่มีเหตุผลที่ระบุ";
+                }
+                break;
+            case 'อนุมัติ':
                 setStepActive('step-submitted', 'green');
                 setStepActive('step-pending', 'green');
                 setStepActive('step-approved', 'green');
