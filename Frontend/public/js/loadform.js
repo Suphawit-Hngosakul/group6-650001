@@ -126,7 +126,7 @@ function downloadFile(requestId) {
         const contentDisposition = response.headers.get('Content-Disposition');
         console.log("Content-Disposition Header:", contentDisposition); // Debug เพื่อตรวจสอบค่า header
 
-        let fileName = 'เอกสารเพิ่มเติมสำหรับคำร้อง.pdf'; // ตั้งค่าเริ่มต้นหากไม่พบชื่อใน header
+        let fileName = 'เอกสารเพิ่มเติม.pdf'; // ตั้งค่าเริ่มต้นหากไม่พบชื่อใน header
 
         // ตรวจสอบ header และดึงชื่อไฟล์
         if (contentDisposition && contentDisposition.includes('filename=')) {

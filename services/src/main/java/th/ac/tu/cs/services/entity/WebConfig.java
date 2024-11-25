@@ -12,7 +12,9 @@ public class WebConfig implements WebMvcConfigurer { // Implement the interface
                 .allowedOrigins("http://127.0.0.1:5501") // Allow this specific frontend domain
                 .allowedMethods("GET", "POST", "PUT", "DELETE") // Allow specific HTTP methods
                 .allowedHeaders("*") // Allow all headers
+                .exposedHeaders("Content-Disposition") // Add exposed header to allow clients to read it
                 .allowCredentials(true); // Allow cookies (if applicable)
     }
 }
+
 
