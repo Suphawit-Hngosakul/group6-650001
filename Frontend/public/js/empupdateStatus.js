@@ -1,7 +1,7 @@
-// ฟังก์ชันสำหรับการอัปเดตสถานะคำร้อง
 async function updateStatus(status) {
     const requestId = new URLSearchParams(window.location.search).get("id");
-    // const details = status === "ขอข้อมูลเพิ่มเติม" || status === "ปฏิเสธ" ? prompt("กรุณาระบุข้อมูลเพิ่มเติม:") : "";
+    let details = "";  // กำหนดค่าเริ่มต้นให้กับตัวแปร details
+
     if (status === "ขอข้อมูลเพิ่มเติม" || status === "ปฏิเสธ") {
         const { value: text } = await Swal.fire({
           input: "textarea",
@@ -21,10 +21,9 @@ async function updateStatus(status) {
         } else {
           Swal.fire("ไม่มีข้อมูลถูกกรอก");
         }
-      }
-      
-      console.log(details); // แสดงผลข้อมูลที่ถูกเก็บใน console
+    }
 
+    console.log(details); // แสดงผลข้อมูลที่ถูกเก็บใน console
 
     console.log("Sending update for Request ID:", requestId);
     console.log("New Status:", status);
@@ -52,7 +51,6 @@ async function updateStatus(status) {
             text: `สถานะคำร้องถูกเปลี่ยนเป็น: ${status}`,
             icon: "success"
           });
-        // alert(`สถานะคำร้องถูกเปลี่ยนเป็น: ${status}`);
         console.log("Response from API:", result);
 
     } catch (error) {
@@ -62,9 +60,9 @@ async function updateStatus(status) {
             title: "เกิดข้อผิดพลาด",
             text: "เกิดข้อผิดพลาดในการเปลี่ยนสถานะคำร้อง: " + error.message,
           });
-        // alert("เกิดข้อผิดพลาดในการเปลี่ยนสถานะคำร้อง: " + error.message);
     }
 }
+
 
 
 // ฟังก์ชันสำหรับการโหลดข้อมูลคำร้องเมื่อหน้าเพจโหลด
