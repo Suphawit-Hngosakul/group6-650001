@@ -47,7 +47,6 @@ document.addEventListener("DOMContentLoaded", function () {
             }
         });
     });
-
     // Submit button click event
     submitButton.addEventListener("click", function (event) {
         event.preventDefault(); // Prevent default form submission
@@ -132,10 +131,21 @@ document.addEventListener("DOMContentLoaded", function () {
                 console.error("ไม่พบปุ่มที่มี class 'notification-btn' ใน DOM");
             }
 
-            alert("ส่งสำเร็จ");
-            form.reset();
+            // ใช้ SweetAlert แสดงผลเมื่อส่งสำเร็จ
+            Swal.fire({
+            icon: 'success',
+            title: 'ส่งฟอร์มสำเร็จ!',
+            text: `ชื่อฟอร์ม: ${formTypeInput.value}\nเวลาที่ส่ง: ${new Date().toLocaleString()}`,
+            });
+            // form.reset();
         } else {
-            alert("ส่งไม่สำเร็จ โปรดตรวจสอบข้อมูลและจุดประสงค์อีกครั้ง");
+            // ใช้ SweetAlert เมื่อข้อมูลไม่ถูกต้อง
+        Swal.fire({
+            icon: 'warning',
+            title: 'ส่งไม่สำเร็จ',
+            text: 'โปรดตรวจสอบข้อมูลและจุดประสงค์อีกครั้ง',
+        });
+           
         }
     });
 
