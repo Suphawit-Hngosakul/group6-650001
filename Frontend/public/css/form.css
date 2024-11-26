@@ -623,3 +623,9 @@ small {
     color: gray;
     font-size: 12px;
 }
+
+.guide-text {
+    font-size: 0.9em; /* ปรับขนาดฟอนต์ */
+    color: #888; /* ใช้สีที่ดูเบา */
+    margin-left: 5px; /* เพิ่มระยะห่างจากข้อความหลัก */
+}

@@ -2,12 +2,16 @@ package th.ac.tu.cs.services.controller;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.io.InputStreamResource;
 import org.springframework.http.*;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import th.ac.tu.cs.services.model.Request;
 import th.ac.tu.cs.services.service.RequestService;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.InputStream;
 import java.net.URLEncoder;
 import java.nio.charset.StandardCharsets;
 import java.util.List;
@@ -44,44 +48,46 @@ public class RequestController {
             @RequestParam(value = "file", required = false) MultipartFile file) {
         try {
             System.out.println("Received request JSON: " + requestJson);
-            // แปลงข้อมูล JSON ไปเป็น Request object
+
+            // แปลง JSON เป็น Request object
             ObjectMapper objectMapper = new ObjectMapper();
             Request request = objectMapper.readValue(requestJson, Request.class);
+            System.out.println("Parsed Request Object: " + request);
 
-            // บันทึกไฟล์ถ้ามีการแนบมา
+            // จัดการไฟล์
             if (file != null) {
-                String directoryPath = "upload"; // เส้นทางโฟลเดอร์ upload
-                Path uploadPath = Paths.get(directoryPath);
+                System.out.println("Received file: " + file.getOriginalFilename());
 
-                // สร้างโฟลเดอร์ upload ถ้าไม่มี
+                String directoryPath = "upload";
+                Path uploadPath = Paths.get(directoryPath);
                 if (!Files.exists(uploadPath)) {
                     Files.createDirectories(uploadPath);
+                    System.out.println("Created upload directory: " + directoryPath);
                 }
 
-                // บันทึกไฟล์
                 String filePath = directoryPath + "/" + file.getOriginalFilename();
                 Path path = Paths.get(filePath);
                 Files.write(path, file.getBytes());
+                System.out.println("File saved at: " + filePath);
 
-                // เก็บที่อยู่ไฟล์ใน request
                 request.setFilePath(filePath);
+            } else {
+                System.out.println("No file received.");
             }
 
-            // บันทึก request ลงฐานข้อมูล
+            // บันทึกในฐานข้อมูล
             Request savedRequest = service.createRequest(request);
+            System.out.println("Saved Request in database: " + savedRequest);
+
             return ResponseEntity.status(HttpStatus.CREATED).body(savedRequest);
 
         } catch (Exception e) {
+            System.err.println("Error during request creation:");
             e.printStackTrace();
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(null);
         }
     }
 
-    //Employee
-    @GetMapping("/all-requests") //ดูคำร้องจากทุกคน
-    public List<Request> getAllRequests() {
-        return service.getAllRequests();
-    }
 
     @GetMapping("/download/{id}")
     public ResponseEntity<byte[]> downloadFile(@PathVariable Long id) {
@@ -98,23 +104,16 @@ public class RequestController {
 
             // กำหนดชื่อไฟล์จากที่เก็บไว้
             String originalFileName = filePath.getFileName().toString();
-            String encodedFileName = URLEncoder.encode(originalFileName, StandardCharsets.UTF_8.toString()).replaceAll("\\+", "%20");
 
-            // กำหนดประเภทของไฟล์
-            MediaType mediaType = MediaType.APPLICATION_OCTET_STREAM;
-            if (originalFileName.endsWith(".pdf")) {
-                mediaType = MediaType.APPLICATION_PDF;
-            } else if (originalFileName.endsWith(".docx")) {
-                mediaType = MediaType.parseMediaType("application/vnd.openxmlformats-officedocument.wordprocessingml.document");
-            } else if (originalFileName.endsWith(".xlsx")) {
-                mediaType = MediaType.parseMediaType("application/vnd.openxmlformats-officedocument.spreadsheetml.sheet");
-            }
-            // เพิ่มประเภทไฟล์อื่น ๆ ตามที่ต้องการ
+            // กำหนด Content-Disposition ให้ใช้ชื่อไฟล์ตรงกับชื่อจริงของไฟล์
+            ContentDisposition contentDisposition = ContentDisposition
+                    .attachment()
+                    .filename(originalFileName)
+                    .build();
 
-            // สร้าง headers สำหรับการดาวน์โหลดไฟล์
             HttpHeaders headers = new HttpHeaders();
-            headers.setContentType(mediaType);
-            headers.add("Content-Disposition", String.format("attachment; filename=\"%s\"; filename*=UTF-8''%s", originalFileName, encodedFileName));
+            headers.setContentType(MediaType.APPLICATION_PDF); // กำหนด MIME type ให้เป็น PDF (ปรับตามประเภทไฟล์)
+            headers.setContentDisposition(contentDisposition); // ตั้งค่า Content-Disposition ด้วยชื่อไฟล์ตรงๆ
 
             // ส่งกลับ Response พร้อมไฟล์
             return ResponseEntity.ok()
@@ -127,15 +126,24 @@ public class RequestController {
         }
     }
 
+
+    //Employee
+    @GetMapping("/all-requests") //ดูคำร้องจากทุกคน
+    public List<Request> getAllRequests() {
+        return service.getAllRequests();
+    }
+
+
     @PutMapping("/{id}")
     public ResponseEntity<Request> updateRequestStatus(@PathVariable Long id, @RequestBody Map<String, Object> statusUpdateRequest) {
         try {
             String status = (String) statusUpdateRequest.get("status");
             String details = (String) statusUpdateRequest.get("details");
+            String employeename = (String) statusUpdateRequest.get("employeename");
             if (status == null || status.isEmpty()) {
                 return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(null);
             }
-            Request request = service.updateRequestStatus(id, status, details);
+            Request request = service.updateRequestStatus(id, status, details,employeename);
 
             return ResponseEntity.ok(request);
         } catch (Exception e) {

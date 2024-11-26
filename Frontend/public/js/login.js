@@ -67,7 +67,7 @@ function submitLogin() {
         document.getElementById('message').innerText = data.message;
         Swal.fire({
             title: "Login สำเร็จ!",
-            text: "ยินดีต้อนรับเข้าสู้ระบบ",
+            text: "ยินดีต้อนรับเข้าสู่ระบบ",
             icon: "success"
           }).then((result) => {
             if (result.isConfirmed) {
