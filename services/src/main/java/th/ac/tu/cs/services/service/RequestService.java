@@ -42,18 +42,20 @@ public class RequestService {
         return repository.findAll();
     }
 
-    public Request updateRequestStatus(Long id, String status, String details) {
+    public Request updateRequestStatus(Long id, String status, String details, String employeename) {
         Request request = repository.findById(id)
                 .orElseThrow(() -> new RuntimeException("Request not found"));
 
         request.setStatus(status);
         request.setDetails(details);
+        request.setEmployeename(employeename);
         Request updatedRequest = repository.save(request);
 
         // ส่งอีเมลแจ้งนักศึกษาเมื่อสถานะเปลี่ยน
         String subject = "สถานะคำร้องของคุณมีการเปลี่ยนแปลง";
         String text = "Dear " + request.getStudentName() + ",\n\nสถานะคำขอของคุณได้มีการเปลี่ยนแปลงเป็น: "
-                + status + ".\nรายละเอียดเพิ่มเติม: " + details + "\n\nThank you.";
+                + status + ".\nรายละเอียดเพิ่มเติม: " + details
+                +"โดย"+ employeename +"\n\nThank you.";
         emailService.sendEmail(request.getEmail(), subject, text);
 
         return updatedRequest;

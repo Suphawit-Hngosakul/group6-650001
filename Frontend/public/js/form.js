@@ -47,21 +47,21 @@ document.addEventListener("DOMContentLoaded", function () {
             }
         });
     });
-
+    
     // Submit button click event
     submitButton.addEventListener("click", function (event) {
         event.preventDefault(); // Prevent default form submission
-
+    
         let requests = "";
         checkboxes.forEach((checkbox) => {
             if (checkbox.checked) {
                 requests = checkbox.value;
             }
         });
-
+    
         // Run all validation checks
         const allValid = validateForm();
-
+    
         if (allValid) {
             // Collect form data into an object
             const requestData = {
@@ -80,20 +80,30 @@ document.addEventListener("DOMContentLoaded", function () {
                 reason: reasonInput.value,
                 signature: signature.value
             };
-
+    
             // แปลงข้อมูลฟอร์มเป็น JSON string
             const requestJson = JSON.stringify(requestData);
             console.log("Request JSON:", requestJson);
             // สร้าง FormData สำหรับส่งข้อมูล
             const formData = new FormData();
             formData.append("request", requestJson);
-
+    
             // เพิ่มไฟล์ที่แนบ (ถ้ามี)
             const fileInput = document.getElementById('file-upload');
             if (fileInput.files.length > 0) {
                 formData.append("file", fileInput.files[0]);
             }
-
+    
+            // ใช้ SweetAlert แสดงผลระหว่างการ fetch (หน้า loading)
+            Swal.fire({
+                title: 'กำลังส่งข้อมูล...',
+                text: 'โปรดรอสักครู่',
+                allowOutsideClick: false,
+                didOpen: () => {
+                    Swal.showLoading(); // แสดงการหมุนของ loading
+                }
+            });
+    
             // ส่งข้อมูลทั้งหมดไปยัง backend
             fetch('http://localhost:8080/api/requests/create', {
                 method: 'POST',
@@ -107,37 +117,53 @@ document.addEventListener("DOMContentLoaded", function () {
                 })
                 .then((data) => {
                     console.log('Success:', data);
+                    
+                    // ใช้ SweetAlert แสดงผลเมื่อส่งสำเร็จ
+                    Swal.fire({
+                        icon: 'success',
+                        title: 'ส่งฟอร์มสำเร็จ!',
+                        text: `ชื่อฟอร์ม: ${formTypeInput.value}\nเวลาที่ส่ง: ${new Date().toLocaleString()}`,
+                    }).then((result) => {
+                        if (result.isConfirmed) {
+                            form.reset();
+                            window.location.href = '../../home.html';
+                        }
+                    });
+                    
+                    // Update notification status in localStorage
+                    localStorage.setItem('notificationStatus', 'submitted');
                 })
                 .catch((error) => {
                     console.error('Error:', error);
+    
+                    // ใช้ SweetAlert แสดงผลเมื่อเกิดข้อผิดพลาดในการส่งข้อมูล
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'ส่งไม่สำเร็จ',
+                        text: 'เกิดข้อผิดพลาดในการส่งข้อมูล กรุณาลองใหม่อีกครั้ง',
+                    });
                 });
-
-            // Update notification status in localStorage
-            localStorage.setItem('notificationStatus', 'submitted');
-
-            // อัปเดตข้อความใน popup และแสดง popup
-            const popup = document.getElementById('notification-popup');
-            const popupMessage = document.getElementById('popup-message');
-            if (popup && popupMessage) {
-                popupMessage.innerText = `ชื่อฟอร์ม: ${formTypeInput.value}\nเวลาที่ส่ง: ${formData.submittedAt}\nส่งสำเร็จ!`;
-                popup.style.display = 'flex'; // แสดง popup ทันที
-            }
-
-            // เพิ่มคลาส highlight ให้ปุ่มแจ้งเตือนเพื่อทำให้เด่น
-            const notificationButton = document.getElementById('notification-btn');
-            if (notificationButton) {
-                console.log("พบปุ่มแจ้งเตือน, กำลังเพิ่มคลาส highlight...");
-                notificationButton.classList.add('highlight');
-            } else {
-                console.error("ไม่พบปุ่มที่มี class 'notification-btn' ใน DOM");
-            }
-
-            alert("ส่งสำเร็จ");
-            form.reset();
+            // ใช้ SweetAlert แสดงผลเมื่อส่งสำเร็จ
+            // Swal.fire({
+            // icon: 'success',
+            // title: 'ส่งฟอร์มสำเร็จ!',
+            // text: `ชื่อฟอร์ม: ${formTypeInput.value}\nเวลาที่ส่ง: ${new Date().toLocaleString()}`,
+            // }).then((result) => {
+            //     if (result.isConfirmed) {
+            //         form.reset();
+            //         window.location.href = '../../home.html';
+            //     }
+            // });
         } else {
-            alert("ส่งไม่สำเร็จ โปรดตรวจสอบข้อมูลและจุดประสงค์อีกครั้ง");
+            // ใช้ SweetAlert เมื่อข้อมูลไม่ถูกต้อง
+            Swal.fire({
+                icon: 'warning',
+                title: 'ส่งไม่สำเร็จ',
+                text: 'โปรดตรวจสอบข้อมูลและจุดประสงค์อีกครั้ง',
+            });
         }
     });
+    
 
     // Function to get the checked request types
     function getCheckedRequests() {
@@ -252,7 +278,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
     function validatePhoneNumber() {
         const phoneValue = phoneInput.value;
-        if (phoneValue.length > 0 && phoneValue.length < 10) {
+        if (phoneValue.length > 0 && phoneValue.length < 10 || phoneValue.length > 10) {
             showErrorBeforeLabel(emailLabel, "กรุณากรอกเบอร์โทรศัพท์ให้ครบ 10 หลัก", "phone-error");
         } else if (phoneValue.length === 10) {
             clearError("phone-error");
