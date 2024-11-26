@@ -113,11 +113,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
             // // Update notification status in localStorage
             // localStorage.setItem('notificationStatus', 'submitted');
-
-            // // อัปเดตข้อความใน popup และแสดง popup
-            // const popup = document.getElementById('notification-popup');
             // const popupMessage = document.getElementById('popup-message');
-            // if (popup && popupMessage) {
             //     popupMessage.innerText = `ชื่อฟอร์ม: ${formTypeInput.value}\nเวลาที่ส่ง: ${formData.submittedAt}\nส่งสำเร็จ!`;
             //     popup.style.display = 'flex'; // แสดง popup ทันที
             // }
@@ -139,7 +135,7 @@ document.addEventListener("DOMContentLoaded", function () {
             }).then((result) => {
                 if (result.isConfirmed) {
                     form.reset();
-                    window.location.href = '../home.html';
+                    window.location.href = '../../home.html';
                 }
             });
         } else {
@@ -265,7 +261,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
     function validatePhoneNumber() {
         const phoneValue = phoneInput.value;
-        if (phoneValue.length > 0 && phoneValue.length < 10) {
+        if (phoneValue.length > 0 && phoneValue.length < 10 || phoneValue.length > 10) {
             showErrorBeforeLabel(emailLabel, "กรุณากรอกเบอร์โทรศัพท์ให้ครบ 10 หลัก", "phone-error");
         } else if (phoneValue.length === 10) {
             clearError("phone-error");
