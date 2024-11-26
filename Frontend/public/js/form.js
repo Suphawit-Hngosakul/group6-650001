@@ -142,6 +142,17 @@ document.addEventListener("DOMContentLoaded", function () {
                         text: 'เกิดข้อผิดพลาดในการส่งข้อมูล กรุณาลองใหม่อีกครั้ง',
                     });
                 });
+            // ใช้ SweetAlert แสดงผลเมื่อส่งสำเร็จ
+            Swal.fire({
+            icon: 'success',
+            title: 'ส่งฟอร์มสำเร็จ!',
+            text: `ชื่อฟอร์ม: ${formTypeInput.value}\nเวลาที่ส่ง: ${new Date().toLocaleString()}`,
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    form.reset();
+                    window.location.href = '../../home.html';
+                }
+            });
         } else {
             // ใช้ SweetAlert เมื่อข้อมูลไม่ถูกต้อง
             Swal.fire({
@@ -266,7 +277,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
     function validatePhoneNumber() {
         const phoneValue = phoneInput.value;
-        if (phoneValue.length > 0 && phoneValue.length < 10) {
+        if (phoneValue.length > 0 && phoneValue.length < 10 || phoneValue.length > 10) {
             showErrorBeforeLabel(emailLabel, "กรุณากรอกเบอร์โทรศัพท์ให้ครบ 10 หลัก", "phone-error");
         } else if (phoneValue.length === 10) {
             clearError("phone-error");

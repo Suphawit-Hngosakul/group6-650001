@@ -28,6 +28,7 @@ public class Request {
     private String subjectDetails;
     private String reason;
     private String signature;
+    private String employeename;
     @Column(name = "file_path")
     private String filePath;
 
@@ -175,6 +176,14 @@ public class Request {
 
     public void setFilePath(String filePath) {
         this.filePath = filePath;
+    }
+
+    public String getEmployeename() {
+        return employeename;
+    }
+
+    public void setEmployeename(String employeename) {
+        this.employeename = employeename;
     }
 }
 
