@@ -47,20 +47,21 @@ document.addEventListener("DOMContentLoaded", function () {
             }
         });
     });
+    
     // Submit button click event
     submitButton.addEventListener("click", function (event) {
         event.preventDefault(); // Prevent default form submission
-
+    
         let requests = "";
         checkboxes.forEach((checkbox) => {
             if (checkbox.checked) {
                 requests = checkbox.value;
             }
         });
-
+    
         // Run all validation checks
         const allValid = validateForm();
-
+    
         if (allValid) {
             // Collect form data into an object
             const requestData = {
@@ -79,20 +80,30 @@ document.addEventListener("DOMContentLoaded", function () {
                 reason: reasonInput.value,
                 signature: signature.value
             };
-
+    
             // แปลงข้อมูลฟอร์มเป็น JSON string
             const requestJson = JSON.stringify(requestData);
             console.log("Request JSON:", requestJson);
             // สร้าง FormData สำหรับส่งข้อมูล
             const formData = new FormData();
             formData.append("request", requestJson);
-
+    
             // เพิ่มไฟล์ที่แนบ (ถ้ามี)
             const fileInput = document.getElementById('file-upload');
             if (fileInput.files.length > 0) {
                 formData.append("file", fileInput.files[0]);
             }
-
+    
+            // ใช้ SweetAlert แสดงผลระหว่างการ fetch (หน้า loading)
+            Swal.fire({
+                title: 'กำลังส่งข้อมูล...',
+                text: 'โปรดรอสักครู่',
+                allowOutsideClick: false,
+                didOpen: () => {
+                    Swal.showLoading(); // แสดงการหมุนของ loading
+                }
+            });
+    
             // ส่งข้อมูลทั้งหมดไปยัง backend
             fetch('http://localhost:8080/api/requests/create', {
                 method: 'POST',
@@ -106,11 +117,31 @@ document.addEventListener("DOMContentLoaded", function () {
                 })
                 .then((data) => {
                     console.log('Success:', data);
+                    
+                    // ใช้ SweetAlert แสดงผลเมื่อส่งสำเร็จ
+                    Swal.fire({
+                        icon: 'success',
+                        title: 'ส่งฟอร์มสำเร็จ!',
+                        text: `ชื่อฟอร์ม: ${formTypeInput.value}\nเวลาที่ส่ง: ${new Date().toLocaleString()}`,
+                    }).then((result) => {
+                        if (result.isConfirmed) {
+                            form.reset();
+                        }
+                    });
+                    
+                    // Update notification status in localStorage
+                    localStorage.setItem('notificationStatus', 'submitted');
                 })
                 .catch((error) => {
                     console.error('Error:', error);
+    
+                    // ใช้ SweetAlert แสดงผลเมื่อเกิดข้อผิดพลาดในการส่งข้อมูล
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'ส่งไม่สำเร็จ',
+                        text: 'เกิดข้อผิดพลาดในการส่งข้อมูล กรุณาลองใหม่อีกครั้ง',
+                    });
                 });
-
             // ใช้ SweetAlert แสดงผลเมื่อส่งสำเร็จ
             Swal.fire({
             icon: 'success',
@@ -131,6 +162,7 @@ document.addEventListener("DOMContentLoaded", function () {
             });
         }
     });
+    
 
     // Function to get the checked request types
     function getCheckedRequests() {
