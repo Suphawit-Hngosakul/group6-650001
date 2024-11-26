@@ -54,68 +54,9 @@
     </main>
     <a href="../followReq/followForm.html"></a>
     
-    <script src="../../js/empmenu.js"></script>
+    <script src="../../js/form&empmenu.js"></script>
     <script src="../../js/empgetdata.js"></script>
 </body>
 
 
 </html>
-<!-- <script>
-    // script.js
-
-    // Mock Data
-    const requests = [
-        { id: "12345", studentName: "กิตติพงษ์ ศรีสมุทร", date: "2024-11-18", status: "pending" },
-        { id: "12346", studentName: "สรัญญา ทองดี", date: "2024-11-17", status: "approved" },
-        { id: "12347", studentName: "จิรภัทร วงศ์วาน", date: "2024-11-16", status: "rejected" }
-    ];
-    
-    // Load Requests into Table
-    function loadRequests() {
-        const tbody = document.getElementById("request-table-body");
-        tbody.innerHTML = ""; // Clear existing rows
-    
-        requests.forEach(request => {
-            const row = document.createElement("tr");
-            row.innerHTML = `
-                <td>${request.id}</td>
-                <td>${request.studentName}</td>
-                <td>${request.studentName}</td>
-                <td>${request.studentName}</td>
-                <td>${request.date}</td>
-                <td>${getStatusBadge(request.status)}</td>
-                <td><button onclick="viewDetails('${request.id}')">ดู</button></td>
-            `;
-            tbody.appendChild(row);
-        });
-    }
-    
-    // View Request Details
-    function viewDetails(id) {
-        const request = requests.find(req => req.id === id);
-        if (!request) return alert("ไม่พบคำร้อง");
-    
-        const details = document.getElementById("details-content");
-        details.innerHTML = `
-            <p><strong>หมายเลขคำร้อง:</strong> ${request.id}</p>
-            <p><strong>ชื่อนักศึกษา:</strong> ${request.studentName}</p>
-            <p><strong>วันที่ส่ง:</strong> ${request.date}</p>
-            <p><strong>สถานะ:</strong> ${request.status}</p>
-        `;
-    
-        document.getElementById("request-details").classList.remove("hidden");
-    }
-    
-    // Get Status Badge
-    function getStatusBadge(status) {
-        const statusColors = {
-            pending: "orange",
-            approved: "green",
-            rejected: "red"
-        };
-        return `<span style="color: ${statusColors[status]}">${status}</span>`;
-    }
-    
-    // Initial Load
-    document.addEventListener("DOMContentLoaded", loadRequests);
-</script> -->

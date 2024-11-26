@@ -111,41 +111,44 @@ document.addEventListener("DOMContentLoaded", function () {
                     console.error('Error:', error);
                 });
 
-            // Update notification status in localStorage
-            localStorage.setItem('notificationStatus', 'submitted');
+            // // Update notification status in localStorage
+            // localStorage.setItem('notificationStatus', 'submitted');
 
-            // อัปเดตข้อความใน popup และแสดง popup
-            const popup = document.getElementById('notification-popup');
-            const popupMessage = document.getElementById('popup-message');
-            if (popup && popupMessage) {
-                popupMessage.innerText = `ชื่อฟอร์ม: ${formTypeInput.value}\nเวลาที่ส่ง: ${formData.submittedAt}\nส่งสำเร็จ!`;
-                popup.style.display = 'flex'; // แสดง popup ทันที
-            }
+            // // อัปเดตข้อความใน popup และแสดง popup
+            // const popup = document.getElementById('notification-popup');
+            // const popupMessage = document.getElementById('popup-message');
+            // if (popup && popupMessage) {
+            //     popupMessage.innerText = `ชื่อฟอร์ม: ${formTypeInput.value}\nเวลาที่ส่ง: ${formData.submittedAt}\nส่งสำเร็จ!`;
+            //     popup.style.display = 'flex'; // แสดง popup ทันที
+            // }
 
-            // เพิ่มคลาส highlight ให้ปุ่มแจ้งเตือนเพื่อทำให้เด่น
-            const notificationButton = document.getElementById('notification-btn');
-            if (notificationButton) {
-                console.log("พบปุ่มแจ้งเตือน, กำลังเพิ่มคลาส highlight...");
-                notificationButton.classList.add('highlight');
-            } else {
-                console.error("ไม่พบปุ่มที่มี class 'notification-btn' ใน DOM");
-            }
+            // // เพิ่มคลาส highlight ให้ปุ่มแจ้งเตือนเพื่อทำให้เด่น
+            // const notificationButton = document.getElementById('notification-btn');
+            // if (notificationButton) {
+            //     console.log("พบปุ่มแจ้งเตือน, กำลังเพิ่มคลาส highlight...");
+            //     notificationButton.classList.add('highlight');
+            // } else {
+            //     console.error("ไม่พบปุ่มที่มี class 'notification-btn' ใน DOM");
+            // }
 
             // ใช้ SweetAlert แสดงผลเมื่อส่งสำเร็จ
             Swal.fire({
             icon: 'success',
             title: 'ส่งฟอร์มสำเร็จ!',
             text: `ชื่อฟอร์ม: ${formTypeInput.value}\nเวลาที่ส่ง: ${new Date().toLocaleString()}`,
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    form.reset();
+                    window.location.href = '../home.html';
+                }
             });
-            // form.reset();
         } else {
             // ใช้ SweetAlert เมื่อข้อมูลไม่ถูกต้อง
-        Swal.fire({
-            icon: 'warning',
-            title: 'ส่งไม่สำเร็จ',
-            text: 'โปรดตรวจสอบข้อมูลและจุดประสงค์อีกครั้ง',
-        });
-           
+            Swal.fire({
+                icon: 'warning',
+                title: 'ส่งไม่สำเร็จ',
+                text: 'โปรดตรวจสอบข้อมูลและจุดประสงค์อีกครั้ง',
+            });
         }
     });
 

@@ -131,10 +131,11 @@ public class RequestController {
         try {
             String status = (String) statusUpdateRequest.get("status");
             String details = (String) statusUpdateRequest.get("details");
+            String employeename = (String) statusUpdateRequest.get("employeename");
             if (status == null || status.isEmpty()) {
                 return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(null);
             }
-            Request request = service.updateRequestStatus(id, status, details);
+            Request request = service.updateRequestStatus(id, status, details,employeename);
 
             return ResponseEntity.ok(request);
         } catch (Exception e) {

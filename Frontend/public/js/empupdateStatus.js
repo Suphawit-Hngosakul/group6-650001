@@ -1,4 +1,5 @@
 async function updateStatus(status) {
+    const user = JSON.parse(localStorage.getItem('user'));
     const requestId = new URLSearchParams(window.location.search).get("id");
     let details = "";  // กำหนดค่าเริ่มต้นให้กับตัวแปร details
 
@@ -37,7 +38,8 @@ async function updateStatus(status) {
             },
             body: JSON.stringify({
                 status: status,
-                details: details
+                details: details,
+                employeename: user.username
             })
         });
 

@@ -31,14 +31,14 @@ document.addEventListener("DOMContentLoaded", function () {
         return response.json();
     })
     .then(data => {
-        updateTimeline(data.status, data.details); // เพิ่ม rejectionReason
+        updateTimeline(data.status, data.details,data.employeename); // เพิ่ม rejectionReason
     })
     .catch(error => {
         console.error('Error:', error);
         alert('เกิดข้อผิดพลาดในการดึงข้อมูลคำร้อง');
     });
 
-    function updateTimeline(status, details) {
+    function updateTimeline(status, details, employeename) {
         function setStepActive(stepId, className) {
             const step = document.getElementById(stepId);
             if (step) {
@@ -58,6 +58,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 setStepActive('step-pending', 'green');
                 break;
             case 'ปฏิเสธ':
+                document.getElementById('empname').classList.remove('hidden');
                 document.getElementById('step-approved').classList.add('hidden');
                 document.getElementById('step-rejected').classList.remove('hidden');
                 setStepActive('step-submitted', 'green');
@@ -69,9 +70,11 @@ document.addEventListener("DOMContentLoaded", function () {
                 if (rejectionDetails) {
                     rejectionDetails.classList.remove('hidden');
                     document.getElementById('rejection-reason').textContent = details || "ไม่มีเหตุผลที่ระบุ";
+                    document.getElementById('empname').textContent = "ตรวจสอบโดย" + employeename;
                 }
                 break;
             case 'ขอข้อมูลเพิ่มเติม':
+                document.getElementById('empname').classList.remove('hidden');
                 document.getElementById('step-needmore').classList.remove('hidden');
                 setStepActive('step-submitted', 'green');
                 setStepActive('step-pending', 'green');
@@ -81,9 +84,12 @@ document.addEventListener("DOMContentLoaded", function () {
                 if (needmoreDetails) {
                     needmoreDetails.classList.remove('hidden');
                     document.getElementById('rejection-reason').textContent = details || "ไม่มีเหตุผลที่ระบุ";
+                    document.getElementById('empname').textContent = "ตรวจสอบโดย" + employeename;
                 }
                 break;
             case 'อนุมัติ':
+                document.getElementById('empname').classList.remove('hidden');
+                document.getElementById('empname').textContent = "ตรวจสอบโดย: " + employeename;
                 setStepActive('step-submitted', 'green');
                 setStepActive('step-pending', 'green');
                 setStepActive('step-approved', 'green');
