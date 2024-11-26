@@ -48,38 +48,46 @@ public class RequestController {
             @RequestParam(value = "file", required = false) MultipartFile file) {
         try {
             System.out.println("Received request JSON: " + requestJson);
-            // แปลงข้อมูล JSON ไปเป็น Request object
+
+            // แปลง JSON เป็น Request object
             ObjectMapper objectMapper = new ObjectMapper();
             Request request = objectMapper.readValue(requestJson, Request.class);
+            System.out.println("Parsed Request Object: " + request);
 
-            // บันทึกไฟล์ถ้ามีการแนบมา
+            // จัดการไฟล์
             if (file != null) {
-                String directoryPath = "upload"; // เส้นทางโฟลเดอร์ upload
-                Path uploadPath = Paths.get(directoryPath);
+                System.out.println("Received file: " + file.getOriginalFilename());
 
-                // สร้างโฟลเดอร์ upload ถ้าไม่มี
+                String directoryPath = "upload";
+                Path uploadPath = Paths.get(directoryPath);
                 if (!Files.exists(uploadPath)) {
                     Files.createDirectories(uploadPath);
+                    System.out.println("Created upload directory: " + directoryPath);
                 }
 
-                // บันทึกไฟล์
                 String filePath = directoryPath + "/" + file.getOriginalFilename();
                 Path path = Paths.get(filePath);
                 Files.write(path, file.getBytes());
+                System.out.println("File saved at: " + filePath);
 
-                // เก็บที่อยู่ไฟล์ใน request
                 request.setFilePath(filePath);
+            } else {
+                System.out.println("No file received.");
             }
 
-            // บันทึก request ลงฐานข้อมูล
+            // บันทึกในฐานข้อมูล
             Request savedRequest = service.createRequest(request);
+            System.out.println("Saved Request in database: " + savedRequest);
+
             return ResponseEntity.status(HttpStatus.CREATED).body(savedRequest);
 
         } catch (Exception e) {
+            System.err.println("Error during request creation:");
             e.printStackTrace();
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(null);
         }
     }
+
 
     @GetMapping("/download/{id}")
     public ResponseEntity<byte[]> downloadFile(@PathVariable Long id) {
