@@ -126,6 +126,7 @@ document.addEventListener("DOMContentLoaded", function () {
                     }).then((result) => {
                         if (result.isConfirmed) {
                             form.reset();
+                            window.location.href = '../../home.html';
                         }
                     });
                     
@@ -143,16 +144,16 @@ document.addEventListener("DOMContentLoaded", function () {
                     });
                 });
             // ใช้ SweetAlert แสดงผลเมื่อส่งสำเร็จ
-            Swal.fire({
-            icon: 'success',
-            title: 'ส่งฟอร์มสำเร็จ!',
-            text: `ชื่อฟอร์ม: ${formTypeInput.value}\nเวลาที่ส่ง: ${new Date().toLocaleString()}`,
-            }).then((result) => {
-                if (result.isConfirmed) {
-                    form.reset();
-                    window.location.href = '../../home.html';
-                }
-            });
+            // Swal.fire({
+            // icon: 'success',
+            // title: 'ส่งฟอร์มสำเร็จ!',
+            // text: `ชื่อฟอร์ม: ${formTypeInput.value}\nเวลาที่ส่ง: ${new Date().toLocaleString()}`,
+            // }).then((result) => {
+            //     if (result.isConfirmed) {
+            //         form.reset();
+            //         window.location.href = '../../home.html';
+            //     }
+            // });
         } else {
             // ใช้ SweetAlert เมื่อข้อมูลไม่ถูกต้อง
             Swal.fire({
