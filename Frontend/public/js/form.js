@@ -111,22 +111,6 @@ document.addEventListener("DOMContentLoaded", function () {
                     console.error('Error:', error);
                 });
 
-            // // Update notification status in localStorage
-            // localStorage.setItem('notificationStatus', 'submitted');
-            // const popupMessage = document.getElementById('popup-message');
-            //     popupMessage.innerText = `ชื่อฟอร์ม: ${formTypeInput.value}\nเวลาที่ส่ง: ${formData.submittedAt}\nส่งสำเร็จ!`;
-            //     popup.style.display = 'flex'; // แสดง popup ทันที
-            // }
-
-            // // เพิ่มคลาส highlight ให้ปุ่มแจ้งเตือนเพื่อทำให้เด่น
-            // const notificationButton = document.getElementById('notification-btn');
-            // if (notificationButton) {
-            //     console.log("พบปุ่มแจ้งเตือน, กำลังเพิ่มคลาส highlight...");
-            //     notificationButton.classList.add('highlight');
-            // } else {
-            //     console.error("ไม่พบปุ่มที่มี class 'notification-btn' ใน DOM");
-            // }
-
             // ใช้ SweetAlert แสดงผลเมื่อส่งสำเร็จ
             Swal.fire({
             icon: 'success',
