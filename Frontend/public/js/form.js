@@ -21,6 +21,7 @@ document.addEventListener("DOMContentLoaded", function () {
     const checkboxes = document.querySelectorAll(".single-check");
     const submitButton = document.querySelector(".submit-btn");
     const signature = document.querySelector(".signature-input");
+    const resetButton = document.querySelector(".reset-btn");
 
     // Add event listeners for real-time validation (other inputs)
     deanInput.addEventListener("input", () => validateRequiredField(deanInput, "กรุณากรอกชื่อคณบดี"));
@@ -46,6 +47,25 @@ document.addEventListener("DOMContentLoaded", function () {
                 });
             }
         });
+    });
+
+    resetButton.addEventListener("click", (event) => {
+        event.preventDefault(); // Prevent default form reset behavior
+    
+        // Save values of the fields you don't want to reset
+        const selfName = selfNameInput.value;
+        const studentId = studentIdInput.value;
+        const faculty = facultyInput.value;
+        const email = emailInput.value;
+    
+        // Reset the form
+        form.reset();
+    
+        // Restore the saved values
+        selfNameInput.value = selfName;
+        studentIdInput.value = studentId;
+        facultyInput.value = faculty;
+        emailInput.value = email;
     });
     
     // Submit button click event
